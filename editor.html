@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editor Visual de Roadmap</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --bg: #f1f5f9;
+      --card: #fff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #64748b;
+    }
+    * { box-sizing: border-box; }
+        /* Toast flotante */
+    .toast {
+      position: fixed;
+      right: 32px;
+      bottom: 32px;
+      min-width: 220px;
+      max-width: 340px;
+      background: rgba(30,41,59,0.96);
+      color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 12px 48px 0 rgba(30,41,59,0.25), 0 2px 8px 0 rgba(37,99,235,0.13);
+      padding: 18px 32px;
+      font-size: 1.13rem;
+      font-weight: 600;
+      z-index: 999999;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(60px) scale(0.98);
+      transition: opacity 0.35s, transform 0.35s;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border: none;
+      letter-spacing: 0.01em;
+    }
+    .toast.toast-show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+    .toast.toast-error {
+      background: rgba(220,38,38,0.98);
+      color: #fff;
+    }
+    .toast.toast-success {
+      background: rgba(22,163,74,0.98);
+      color: #fff;
+    }
+    .toast .toast-icon {
+      font-size: 1.35em;
+      margin-right: 6px;
+      display: inline-block;
+    }
+    /* Fondo gradiente SaaS */
+    body {
+      margin: 0;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    /* Contenedor premium glass */
+    .editor-container {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(226,232,240,0.7);
+      margin: 36px auto;
+      padding: 40px;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(15,23,42,0.08);
+      max-width: 1100px;
+      width: 98vw;
+      min-width: 340px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    /* Título gradiente tipo producto */
+    h1 {
+      font-size: 2.3rem;
+      text-align: center;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, #2563eb, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      margin-top: 0;
+    }
+    .slides-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    /* Slide card premium */
+    .slide-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 26px;
+      border: 1px solid #eef2f7;
+      box-shadow: 0 6px 20px rgba(15,23,42,0.04);
+      transition: all 0.25s ease;
+      position: relative;
+      margin-bottom: 18px;
+    }
+    .slide-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 50px rgba(37,99,235,0.12);
+    }
+    .slide-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .slide-header input[type="text"] {
+      font-size: 1.18rem;
+      font-weight: 600;
+      border: none;
+      background: transparent;
+      color: var(--primary);
+      outline: none;
+      flex: 1;
+      padding: 2px 0;
+    }
+    .slide-actions {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+    .slide-actions button {
+      background: #e2e8f0;
+      color: var(--danger);
+      border: none;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .slide-actions button:hover {
+      background: #fee2e2;
+    }
+    .fields-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-bottom: 10px;
+    }
+    /* Field card pro */
+    .field-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 14px;
+      border: 1px solid #eef2f7;
+      transition: all 0.2s ease;
+      min-width: 220px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+    .field-card:hover {
+      transform: scale(1.01);
+      border-color: #c7d2fe;
+      box-shadow: 0 10px 25px rgba(37,99,235,0.08);
+    }
+    .field-actions {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      display: flex;
+      gap: 4px;
+    }
+    .field-actions button {
+      background: #e2e8f0;
+      color: var(--muted);
+      border: none;
+      border-radius: 5px;
+      padding: 2px 7px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+    }
+    .field-actions button:hover {
+      background: #fee2e2;
+      color: var(--danger);
+    }
+    /* Botón add tipo app moderna */
+    .add-btn {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: white;
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-weight: 600;
+      box-shadow: 0 10px 20px rgba(37,99,235,0.2);
+      transition: all 0.2s ease;
+      border: none;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      font-size: 1.08rem;
+      cursor: pointer;
+      width: fit-content;
+      height: 50px;
+    }
+    .add-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(37,99,235,0.3);
+    }
+    /* Acciones jerarquía visual */
+    .actions {
+      display: flex;
+      gap: 14px;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+    .actions button {
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      box-shadow: 0 6px 16px rgba(15,23,42,0.08);
+      font-size: 1.08rem;
+      border: none;
+      cursor: pointer;
+    }
+    .actions button:hover {
+      transform: translateY(-1px);
+    }
+    .actions button:nth-child(1) { background: var(--primary); color: #fff; }
+    .actions button:nth-child(1):hover { background: #1746a2; }
+    .actions button:nth-child(2) { background: #16a34a; color: #fff; }
+    .actions button:nth-child(2):hover { background: #0e7c2f; }
+    .actions button:nth-child(3) { background: #f59e42; color: #fff; }
+    .actions button:nth-child(3):hover { background: #b45309; }
+    /* Preview panel técnico */
+    .preview-container {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 14px;
+      padding: 18px 24px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+      margin-top: 18px;
+      overflow-x: auto;
+      max-width: 100%;
+    }
+    .preview-title {
+      color: #60a5fa;
+      font-size: 1.18rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .preview-container pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+      font-size: 1.01rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+      margin: 0;
+      background: none;
+      padding: 0;
+      max-width: 100%;
+      overflow-x: auto;
+    }
+    .error {
+      color: var(--danger);
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    /* Inputs modernos */
+    input, textarea, select {
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.2s;
+      background: #fff;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
+    }
+
+    /* Scrollbar custom */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e1 transparent;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 700px) {
+      .editor-container { padding: 16px 2vw; }
+      .slide-card { padding: 12px 4vw; }
+      .fields-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="editor-container">
+    <div id="toast" class="toast"></div>
+    <h1>Editor Visual de Roadmap</h1>
+    <div id="error" class="error" style="display:none;"></div>
+    <div id="slidesRoot"></div>
+    <button class="add-btn" onclick="addSlide()">+ Agregar Slide</button>
+    <div class="actions" style="margin-top:18px;">
+      <button onclick="saveAll()">💾 Guardar</button>
+      <button onclick="exportJSON()">⬇️ Exportar JSON</button>
+      <button onclick="importJSON()">⬆️ Importar JSON</button>
+      <button onclick="restoreDefaults()" style="background:var(--danger);color:#fff;">Restaurar valores por defecto</button>
+      <input type="file" id="importFile" accept="application/json" style="display:none" />
+    </div>
+    <div class="preview-container">
+      <div class="preview-title">Vista previa estructurada del JSON</div>
+      <pre id="jsonPreview" style="font-size:1.01rem;line-height:1.5;color:#334155;"></pre>
+    </div>
+    <div style="font-size:0.98rem;color:#64748b;margin-top:8px;max-width:900px;">
+      <b>Tips:</b> Puedes agregar slides, campos, colores, imágenes, timeline, etc. El roadmap se actualizará automáticamente.<br>
+      <b>Para agregar campos:</b> Usa el botón “+ Campo” en cada slide. Puedes elegir tipo (texto, color, imagen, número, timeline, etc.).
+    </div>
+  </div>
+  <div class="back-link">
+    <a href="roadmap.html">&#8592; Volver al Roadmap</a>
+  </div>
+  <script>
+    // --- Estructura dinámica ---
+    const defaultSlides = [
+      {
+        "title": "Resumen Ejecutivo",
+        "color": "#fff",
+        "fields": [
+          {
+            "label": "Objetivo",
+            "type": "text",
+            "value": "Sistema de gestión y control de extintores, diseñado de forma moderna y adaptado a la operación de Maxiseguridad, que permite optimizar los procesos y mejorar la calidad del trabajo en las áreas de logística y taller."
+          },
+          {
+            "label": "Enfoque de transformación digital",
+            "type": "text",
+            "value": "Optimizando los procesos operativos y elevando la calidad del trabajo en logística y taller mediante una solución moderna y adaptada a la operación."
+          },
+          {
+            "label": "Resultado",
+            "type": "text",
+            "value": "Nos va a permitir modernizar nuestros sistemas actuales y mejorar frente a nuestros clientes."
+          },
+          {
+            "label": "Nuestro dolor en el proceso",
+            "type": "textarea",
+            "value": "   - Falta de trazabilidad del estado real de un extintor.\n\n   - Desconexión entre taller y logística.\n\n   - Información dispersa o manual y no en tiempo real.\n\n   - Dificultad para auditar procesos.\n\n   - Errores en movimientos y estados\n\nEl sistema elimina esto centralizando todo en un flujo único digital."
+          }
+        ]
+      },
+      {
+        "title": "Sistema",
+        "color": "#f8fafc",
+        "fields": [
+          {
+            "label": "Backend",
+            "type": "text",
+            "value": "Arquitectura organizada y escalable en NodeJS, Sequelize y Mysql."
+          },
+          {
+            "label": "Frontend",
+            "type": "text",
+            "value": "Dashboard inicial en Vite y React JS."
+          },
+          {
+            "label": "Negocio",
+            "type": "text",
+            "value": "Se inició el relevamiento funcional del sistema actual (SIGEX) y de la operatoria real del taller y su vinculo con los procesos de logistica,"
+          },
+          {
+            "label": "Análisis del sistema actual (SIGEX)",
+            "type": "textarea",
+            "value": "Se realizó un relevamiento inicial de los módulos existentes, entre ellos:\n\n•Gestión de clientes, proveedores y estructuras organizativas.\n\n•Gestión de equipos y planillas de trabajo.\n\n•Módulo de logística (recorridos, retiros, órdenes).\n\n•Facturación y cobranzas.\n\n•Reportes operativos y técnicos.\n\n•Controles periódicos e integración con otros sistemas.\n\nEste análisis permite identificar tanto las funcionalidades necesarias como las oportunidades de mejora en términos de usabilidad, integración y trazabilidad.\n"
+          }
+        ]
+      },
+      {
+        "title": "Etapa Actual",
+        "color": "#fff",
+        "fields": [
+          {
+            "label": "Análisis y Relevamiento Funcional",
+            "type": "text",
+            "value": "Actualmente el foco está en comprender el circuito operativo real, principalmente en el área técnica (taller)."
+          },
+          {
+            "label": "Avances",
+            "type": "textarea",
+            "value": "•Inicio del análisis del ciclo de vida del extintor (desde ingreso al taller hasta egreso). \n\n•Identificación preliminar de etapas del proceso (recepción, inspección, reparación, carga, control, despacho)."
+          },
+          {
+            "label": "Pendientes clave",
+            "type": "textarea",
+            "value": "•Definición del flujo completo junto al responsable del área de taller.\n\n•Formalización del circuito operativo ideal para su posterior implementación.\n"
+          },
+          {
+            "label": "Próximas acciones inmediatas",
+            "type": "textarea",
+            "value": "•Relevamiento del circuito logístico.\n\n•Identificación de puntos de integración entre taller y logística.\n\n"
+          }
+        ]
+      },
+      {
+        "title": "Roadmap de Avance por Etapas",
+        "color": "#fff",
+        "fields": [
+          {
+            "label": "Timeline",
+            "type": "timeline",
+            "value": [
+              {
+                "semana": "Etapa 1",
+                "titulo": "Definición del proceso operativo",
+                "detalle": "Formalización del flujo del taller, relevamiento del circuito logístico e identificación de puntos de integración entre áreas.",
+                "status": "done",
+                "progreso": 100
+              },
+              {
+                "semana": "Etapa 2",
+                "titulo": "Modelado del sistema",
+                "detalle": "Definición de estados del extintor, modelado de eventos y transiciones, y diseño de la estructura de datos y lógica backend.",
+                "status": "active",
+                "progreso": 60
+              },
+              {
+                "semana": "Etapa 3",
+                "titulo": "Desarrollo del módulo operativo",
+                "detalle": "Implementación del circuito operativo del extintor, registro de tareas técnicas, control de insumos e integración con logística (salidas y despachos).",
+                "status": "pending",
+                "progreso": 0
+              },
+              {
+                "semana": "Etapa 4",
+                "titulo": "Desarrollo de interfaces",
+                "detalle": "Interfaces optimizadas para operarios con foco en velocidad y simplicidad, dashboard de seguimiento operativo y mejora de experiencia de usuario.",
+                "status": "pending",
+                "progreso": 0
+              },
+              {
+                "semana": "Etapa 5",
+                "titulo": "Facturación y administración",
+                "detalle": "Generación de órdenes de facturación, vinculación con clientes y servicios, y desarrollo de reportes de gestión.",
+                "status": "pending",
+                "progreso": 0
+              },
+              {
+                "semana": "Etapa 6",
+                "titulo": "Testing y validación operativa",
+                "detalle": "Pruebas con datos reales, validación de roles y seguridad, y ajustes basados en el uso operativo.",
+                "status": "pending",
+                "progreso": 0
+              },
+              {
+                "semana": "Etapa 7",
+                "titulo": "Puesta en producción",
+                "detalle": "Implementación progresiva del sistema, acompañamiento a usuarios finales y ciclo de mejoras continuas en base a feedback operativo.",
+                "status": "pending",
+                "progreso": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Línea de Mejora e Innovación (R&D)",
+        "color": "#fff",
+        "fields": [
+          {
+            "label": "Investigación QR y Trazabilidad",
+            "type": "timeline",
+            "value": [
+              {
+                "fase": "Concepto",
+                "titulo": "Trazabilidad en tiempo real con QR",
+                "detalle": "Evaluación de un sistema para digitalizar el seguimiento del extintor a través de códigos QR y eventos en tiempo real.",
+                "status": "active",
+                "progreso": 40
+              },
+              {
+                "fase": "Diseño funcional",
+                "titulo": "Modelo de eventos y escaneo",
+                "detalle": "Definición de cómo el escaneo de QR genera eventos, actualiza estados y registra movimientos automáticamente.",
+                "status": "active",
+                "progreso": 50
+              },
+              {
+                "fase": "Validación operativa",
+                "titulo": "Flujo en campo",
+                "detalle": "Análisis del impacto en taller y logística, validación de usabilidad en operación real.",
+                "status": "pending",
+                "progreso": 0
+              },
+              {
+                "fase": "Beneficios esperados",
+                "titulo": "Impacto operativo",
+                "detalle": "Reducción de carga manual, mejora de trazabilidad y visibilidad en tiempo real entre áreas.",
+                "status": "pending",
+                "progreso": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Roadmap de Producción",
+        "color": "#fff",
+        "fields": [
+          {
+            "label": "Plan de entrega",
+            "type": "timeline",
+            "value": [
+              {
+                "fase": "Fase 1",
+                "titulo": "Definición del proceso operativo",
+                "detalle": "Formalización del flujo del taller, circuito logístico e integración entre áreas.",
+                "status": "done",
+                "progreso": 100
+              },
+              {
+                "fase": "Fase 2",
+                "titulo": "Modelado del sistema",
+                "detalle": "Definición de estados del extintor, eventos y estructura backend.",
+                "status": "active",
+                "progreso": 60
+              },
+              {
+                "fase": "Fase 3",
+                "titulo": "Desarrollo del módulo operativo",
+                "detalle": "Circuito operativo del extintor, tareas técnicas e integración con logística.",
+                "status": "pending",
+                "progreso": 0
+              },
+              {
+                "fase": "Fase 4",
+                "titulo": "Interfaces operativas",
+                "detalle": "UI para operarios, dashboard y optimización de experiencia de uso.",
+                "status": "pending",
+                "progreso": 0
+              },
+              {
+                "fase": "Fase 5",
+                "titulo": "Testing y validación",
+                "detalle": "Pruebas con datos reales, validación de roles y ajustes operativos.",
+                "status": "pending",
+                "progreso": 0
+              },
+              {
+                "fase": "Fase 6",
+                "titulo": "Puesta en producción",
+                "detalle": "Deploy progresivo, acompañamiento a usuarios y mejoras continuas.",
+                "status": "pending",
+                "progreso": 0
+              }
+            ]
+          }
+        ]
+      }
+    ];
+
+    let slides = JSON.parse(JSON.stringify(defaultSlides));
+
+    function renderSlides() {
+      const root = document.getElementById('slidesRoot');
+      root.innerHTML = '';
+      slides.forEach((slide, sidx) => {
+        const slideDiv = document.createElement('div');
+        slideDiv.className = 'slide-card';
+        slideDiv.style.background = slide.color || '#fff';
+        // Header
+        const header = document.createElement('div');
+        header.className = 'slide-header';
+        const titleInput = document.createElement('input');
+        titleInput.type = 'text';
+        titleInput.value = slide.title;
+        titleInput.placeholder = 'Título de la slide';
+        titleInput.oninput = e => { slide.title = e.target.value; renderPreview(); };
+        header.appendChild(titleInput);
+        // Color
+        const colorInput = document.createElement('input');
+        colorInput.type = 'color';
+        colorInput.value = slide.color || '#fff';
+        colorInput.title = 'Color de fondo';
+        colorInput.oninput = e => { slide.color = e.target.value; renderSlides(); renderPreview(); };
+        header.appendChild(colorInput);
+        // Acciones
+        const actions = document.createElement('div');
+        actions.className = 'slide-actions';
+        if (slides.length > 1) {
+          const delBtn = document.createElement('button');
+          delBtn.innerText = '🗑';
+          delBtn.title = 'Eliminar slide';
+          delBtn.onclick = () => { slides.splice(sidx,1); renderSlides(); renderPreview(); };
+          actions.appendChild(delBtn);
+        }
+        if (sidx > 0) {
+          const upBtn = document.createElement('button');
+          upBtn.innerText = '⬆️';
+          upBtn.title = 'Subir';
+          upBtn.onclick = () => { [slides[sidx-1],slides[sidx]]=[slides[sidx],slides[sidx-1]]; renderSlides(); renderPreview(); };
+          actions.appendChild(upBtn);
+        }
+        if (sidx < slides.length-1) {
+          const downBtn = document.createElement('button');
+          downBtn.innerText = '⬇️';
+          downBtn.title = 'Bajar';
+          downBtn.onclick = () => { [slides[sidx+1],slides[sidx]]=[slides[sidx],slides[sidx+1]]; renderSlides(); renderPreview(); };
+          actions.appendChild(downBtn);
+        }
+        header.appendChild(actions);
+        slideDiv.appendChild(header);
+        // Campos
+        const fieldsDiv = document.createElement('div');
+        fieldsDiv.className = 'fields-list';
+        slide.fields.forEach((field, fidx) => {
+          const fieldDiv = document.createElement('div');
+          fieldDiv.className = 'field-card';
+          // Label
+          const labelInput = document.createElement('input');
+          labelInput.type = 'text';
+          labelInput.value = field.label;
+          labelInput.placeholder = 'Nombre del campo';
+          labelInput.oninput = e => { field.label = e.target.value; renderPreview(); };
+          fieldDiv.appendChild(labelInput);
+          // Tipo
+          const typeSel = document.createElement('select');
+          ['text','textarea','color','number','image','timeline'].forEach(t => {
+            const opt = document.createElement('option');
+            opt.value = t;
+            opt.innerText = t.charAt(0).toUpperCase()+t.slice(1);
+            if (field.type===t) opt.selected = true;
+            typeSel.appendChild(opt);
+          });
+          typeSel.onchange = e => { field.type = e.target.value; if(field.type==='timeline')field.value=[]; renderSlides(); renderPreview(); };
+          fieldDiv.appendChild(typeSel);
+          // Valor
+          if (field.type==='text') {
+            const val = document.createElement('input');
+            val.type = 'text';
+            val.value = field.value||'';
+            val.placeholder = 'Valor';
+            val.oninput = e => { field.value = e.target.value; renderPreview(); };
+            fieldDiv.appendChild(val);
+          } else if (field.type==='textarea') {
+            const val = document.createElement('textarea');
+            val.value = field.value||'';
+            val.placeholder = 'Valor';
+            val.oninput = e => { field.value = e.target.value; renderPreview(); };
+            fieldDiv.appendChild(val);
+          } else if (field.type==='color') {
+            const val = document.createElement('input');
+            val.type = 'color';
+            val.value = field.value||'#2563eb';
+            val.oninput = e => { field.value = e.target.value; renderPreview(); };
+            fieldDiv.appendChild(val);
+          } else if (field.type==='number') {
+            const val = document.createElement('input');
+            val.type = 'number';
+            val.value = field.value||0;
+            val.oninput = e => { field.value = Number(e.target.value); renderPreview(); };
+            fieldDiv.appendChild(val);
+          } else if (field.type==='image') {
+            const val = document.createElement('input');
+            val.type = 'text';
+            val.value = field.value||'';
+            val.placeholder = 'URL de imagen';
+            val.oninput = e => { field.value = e.target.value; renderPreview(); };
+            fieldDiv.appendChild(val);
+          } else if (field.type==='timeline') {
+            const timelineDiv = document.createElement('div');
+            timelineDiv.style.display = 'flex';
+            timelineDiv.style.flexDirection = 'column';
+            timelineDiv.style.gap = '8px';
+            (field.value||[]).forEach((item, tidx) => {
+              const row = document.createElement('div');
+              row.style.display = 'flex';
+              row.style.gap = '6px';
+              ['semana','titulo','detalle','status','progreso'].forEach(k => {
+                const inp = document.createElement('input');
+                inp.type = k==='progreso'?'number':'text';
+                inp.value = item[k]||'';
+                inp.placeholder = k.charAt(0).toUpperCase()+k.slice(1);
+                inp.style.width = k==='detalle'?'120px':'80px';
+                inp.oninput = e => { item[k]=k==='progreso'?Number(e.target.value):e.target.value; renderPreview(); };
+                row.appendChild(inp);
+              });
+              const del = document.createElement('button');
+              del.innerText = '🗑';
+              del.title = 'Eliminar etapa';
+              del.onclick = ()=>{ field.value.splice(tidx,1); renderSlides(); renderPreview(); };
+              row.appendChild(del);
+              timelineDiv.appendChild(row);
+            });
+            const addT = document.createElement('button');
+            addT.innerText = '+ Etapa';
+            addT.className = 'add-btn';
+            addT.onclick = ()=>{ field.value.push({semana:'',titulo:'',detalle:'',status:'pending',progreso:0}); renderSlides(); renderPreview(); };
+            timelineDiv.appendChild(addT);
+            fieldDiv.appendChild(timelineDiv);
+          }
+          // Acciones campo
+          const fActions = document.createElement('div');
+          fActions.className = 'field-actions';
+          const delF = document.createElement('button');
+          delF.innerText = '🗑';
+          delF.title = 'Eliminar campo';
+          delF.onclick = ()=>{ slide.fields.splice(fidx,1); renderSlides(); renderPreview(); };
+          fActions.appendChild(delF);
+          if (fidx > 0) {
+            const upF = document.createElement('button');
+            upF.innerText = '⬆️';
+            upF.title = 'Subir campo';
+            upF.onclick = ()=>{ [slide.fields[fidx-1],slide.fields[fidx]]=[slide.fields[fidx],slide.fields[fidx-1]]; renderSlides(); renderPreview(); };
+            fActions.appendChild(upF);
+          }
+          if (fidx < slide.fields.length-1) {
+            const downF = document.createElement('button');
+            downF.innerText = '⬇️';
+            downF.title = 'Bajar campo';
+            downF.onclick = ()=>{ [slide.fields[fidx+1],slide.fields[fidx]]=[slide.fields[fidx],slide.fields[fidx+1]]; renderSlides(); renderPreview(); };
+            fActions.appendChild(downF);
+          }
+          fieldDiv.appendChild(fActions);
+          fieldsDiv.appendChild(fieldDiv);
+        });
+        // Botón agregar campo
+        const addField = document.createElement('button');
+        addField.className = 'add-btn';
+        addField.innerText = '+ Agregar campo';
+        addField.onclick = ()=>{
+          slide.fields.push({label:'Nuevo campo',type:'text',value:''});
+          renderSlides();
+          renderPreview();
+        };
+        fieldsDiv.appendChild(addField);
+        slideDiv.appendChild(fieldsDiv);
+        root.appendChild(slideDiv);
+      });
+    }
+    function addSlide() {
+      slides.push({title:'Nueva Slide',color:'#fff',fields:[]});
+      renderSlides();
+      renderPreview();
+    }
+    function renderPreview() {
+      document.getElementById('jsonPreview').innerText = JSON.stringify(slides,null,2);
+    }
+    function saveAll() {
+      localStorage.setItem('roadmap_slides', JSON.stringify(slides));
+      showMessage('¡Datos guardados!');
+    }
+    function exportJSON() {
+      const blob = new Blob([JSON.stringify(slides, null, 2)], {type: 'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'roadmap-slides.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showMessage('JSON exportado');
+    }
+    function importJSON() {
+      document.getElementById('importFile').click();
+    }
+    document.getElementById('importFile').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        try {
+          const data = JSON.parse(evt.target.result);
+          if (Array.isArray(data)) {
+            slides = data;
+            renderSlides();
+            renderPreview();
+            showMessage('JSON importado. ¡No olvides guardar!','#2563eb');
+          } else {
+            showMessage('El archivo no tiene la estructura esperada.','#d32f2f');
+          }
+        } catch {
+          showMessage('Archivo inválido.','#d32f2f');
+        }
+      };
+      reader.readAsText(file);
+      e.target.value = '';
+    });
+    // Toast profesional
+    function showMessage(msg, color = '#16a34a') {
+      const toast = document.getElementById('toast');
+      let icon = '';
+      toast.className = 'toast';
+      if (color === '#16a34a' || color === 'var(--success)') {
+        toast.classList.add('toast-success');
+        icon = '✔️';
+      } else if (color === '#d32f2f' || color === 'var(--danger)') {
+        toast.classList.add('toast-error');
+        icon = '❌';
+      } else {
+        icon = 'ℹ️';
+      }
+      toast.innerHTML = `<span class="toast-icon">${icon}</span> <span>${msg}</span>`;
+      setTimeout(() => { toast.classList.add('toast-show'); }, 10);
+      setTimeout(() => {
+        toast.classList.remove('toast-show');
+        setTimeout(() => { toast.className = 'toast'; toast.innerHTML = ''; }, 400);
+      }, 2200);
+    }
+
+    // Restaurar valores por defecto
+    function restoreDefaults() {
+      if (confirm('¿Seguro que quieres restaurar los valores por defecto? Se perderán los cambios no guardados.')) {
+        localStorage.removeItem('roadmap_slides');
+        slides = JSON.parse(JSON.stringify(defaultSlides));
+        renderSlides();
+        renderPreview();
+        showMessage('¡Valores restaurados por defecto!','var(--success)');
+      }
+    }
+    // Init
+    if (localStorage.getItem('roadmap_slides')) {
+      try { slides = JSON.parse(localStorage.getItem('roadmap_slides')); } catch {}
+    }
+    renderSlides();
+    renderPreview();
+  </script>
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmap Maxiseguridad</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sidebar" id="sidebar"></div>
+  <div class="main">
+    <div class="header">
+      <img src="logo-ms.jpg" class="logo">
+      <div class="title">Maxiseguridad Industrial</div>
+      <a href="editor.html" style="margin-left:auto;">
+        <button class="btn btn-primary" style="display: none">Editar datos</button>
+      </a>
+      <button id="fullscreenBtn" title="Pantalla completa" class="btn btn-primary" style="margin-left:18px;">Pantalla completa</button>
+      <button id="restoreBtn" title="Restaurar valores por defecto" class="btn btn-danger" style="margin-left:18px;background:#dc2626;color:#fff;">Restaurar</button>
+      <div id="toast" class="toast" style="display:none;"></div>
+    </div>
+    <div class="page-content" id="pageContent"></div>
+  </div>
+  <script>
+    // --- Cargar slides desde localStorage (ambos formatos) ---
+    let slides = [];
+    if (localStorage.getItem('roadmap_slides')) {
+      try { slides = JSON.parse(localStorage.getItem('roadmap_slides')); } catch {}
+    } else if (localStorage.getItem('roadmap')) {
+      try { slides = JSON.parse(localStorage.getItem('roadmap')); } catch {}
+    }
+    if (!Array.isArray(slides) || !slides.length) {
+      slides = [
+        {
+          "title": "Resumen Ejecutivo",
+          "color": "#fff",
+          "fields": [
+            {
+              "label": "Objetivo",
+              "type": "text",
+              "value": "Sistema de gestión y control de extintores, diseñado de forma moderna y adaptado a la operación de Maxiseguridad, que permite optimizar los procesos y mejorar la calidad del trabajo en las áreas de logística y taller."
+            },
+            {
+              "label": "Enfoque de transformación digital",
+              "type": "text",
+              "value": "Optimizando los procesos operativos y elevando la calidad del trabajo en logística y taller mediante una solución moderna y adaptada a la operación."
+            },
+            {
+              "label": "Resultado",
+              "type": "text",
+              "value": "Nos va a permitir modernizar nuestros sistemas actuales y mejorar frente a nuestros clientes."
+            },
+            {
+              "label": "Nuestro dolor en el proceso",
+              "type": "textarea",
+              "value": "   - Falta de trazabilidad del estado real de un extintor.\n\n   - Desconexión entre taller y logística.\n\n   - Información dispersa o manual y no en tiempo real.\n\n   - Dificultad para auditar procesos.\n\n   - Errores en movimientos y estados\n\nEl sistema elimina esto centralizando todo en un flujo único digital."
+            }
+          ]
+        },
+        {
+          "title": "Sistema",
+          "color": "#f8fafc",
+          "fields": [
+            {
+              "label": "Backend",
+              "type": "text",
+              "value": "Arquitectura organizada y escalable en NodeJS, Sequelize y Mysql."
+            },
+            {
+              "label": "Frontend",
+              "type": "text",
+              "value": "Dashboard inicial en Vite y React JS."
+            },
+            {
+              "label": "Negocio",
+              "type": "text",
+              "value": "Se inició el relevamiento funcional del sistema actual (SIGEX) y de la operatoria real del taller y su vinculo con los procesos de logistica,"
+            },
+            {
+              "label": "Análisis del sistema actual (SIGEX)",
+              "type": "textarea",
+              "value": "Se realizó un relevamiento inicial de los módulos existentes, entre ellos:\n\n•Gestión de clientes, proveedores y estructuras organizativas.\n\n•Gestión de equipos y planillas de trabajo.\n\n•Módulo de logística (recorridos, retiros, órdenes).\n\n•Facturación y cobranzas.\n\n•Reportes operativos y técnicos.\n\n•Controles periódicos e integración con otros sistemas.\n\nEste análisis permite identificar tanto las funcionalidades necesarias como las oportunidades de mejora en términos de usabilidad, integración y trazabilidad.\n"
+            }
+          ]
+        },
+        {
+          "title": "Etapa Actual",
+          "color": "#fff",
+          "fields": [
+            {
+              "label": "Análisis y Relevamiento Funcional",
+              "type": "text",
+              "value": "Actualmente el foco está en comprender el circuito operativo real, principalmente en el área técnica (taller)."
+            },
+            {
+              "label": "Avances",
+              "type": "textarea",
+              "value": "•Inicio del análisis del ciclo de vida del extintor (desde ingreso al taller hasta egreso). \n\n•Identificación preliminar de etapas del proceso (recepción, inspección, reparación, carga, control, despacho)."
+            },
+            {
+              "label": "Pendientes clave",
+              "type": "textarea",
+              "value": "•Definición del flujo completo junto al responsable del área de taller.\n\n•Formalización del circuito operativo ideal para su posterior implementación.\n"
+            },
+            {
+              "label": "Próximas acciones inmediatas",
+              "type": "textarea",
+              "value": "•Relevamiento del circuito logístico.\n\n•Identificación de puntos de integración entre taller y logística.\n\n"
+            }
+          ]
+        },
+        {
+          "title": "Linea de tiempo 2",
+          "color": "#fff",
+          "fields": [
+            {
+              "label": "Timeline",
+              "type": "timeline",
+              "value": [
+                {
+                  "semana": "Semana 1–2",
+                  "titulo": "Definición de procesos",
+                  "detalle": "Relevamiento completo + validación con operación",
+                  "status": "done",
+                  "progreso": 100
+                },
+                {
+                  "semana": "Semana 2–3",
+                  "titulo": "Modelado",
+                  "detalle": "Estados, eventos y estructura backend",
+                  "status": "active",
+                  "progreso": 60
+                },
+                {
+                  "semana": "Semana 3–4",
+                  "titulo": "Core operativo",
+                  "detalle": "Flujo completo del extintor",
+                  "status": "pending",
+                  "progreso": 0
+                }
+              ]
+            }
+          ]
+        }
+      ];
+    }
+    // --- Render Sidebar ---
+    function renderSidebar() {
+      const sb = document.getElementById('sidebar');
+      sb.innerHTML = '<h2>ROADMAP</h2>';
+      slides.forEach((slide, idx) => {
+        const item = document.createElement('div');
+        item.className = 'menu-item' + (idx === 0 ? ' active' : '');
+        item.innerText = slide.title || `Slide ${idx+1}`;
+        item.onclick = () => showSlide(idx);
+        sb.appendChild(item);
+      });
+    }
+    // --- Helpers para color de título ---
+    function getColor(val) {
+      if (!val) return '';
+      if (val.startsWith('var(')) return val;
+      if (val.startsWith('#') || val.startsWith('rgb')) return val;
+      // Permitir nombres de color del logo
+      if (val === 'rojo' || val === 'red') return 'var(--logo-red)';
+      if (val === 'azul' || val === 'blue') return 'var(--logo-blue)';
+      if (val === 'amarillo' || val === 'yellow') return 'var(--logo-yellow)';
+      if (val === 'oscuro' || val === 'dark') return 'var(--logo-dark)';
+      return val;
+    }
+
+    // --- Render Slides ---
+    function renderSlides() {
+      const pc = document.getElementById('pageContent');
+      pc.innerHTML = '';
+      slides.forEach((slide, idx) => {
+        const slideDiv = document.createElement('div');
+        slideDiv.className = 'slide' + (idx === 0 ? ' active' : '');
+        slideDiv.style.background = slide.color || '#fff';
+        // Título
+        const title = document.createElement('h1');
+        title.innerText = slide.title || `Slide ${idx+1}`;
+        if (slide.titleColor) title.style.color = getColor(slide.titleColor);
+        slideDiv.appendChild(title);
+        // Campos
+        if (slide.fields && slide.fields.length) {
+          const grid = document.createElement('div');
+          grid.className = 'grid';
+          let blockFields = [];
+          slide.fields.forEach(field => {
+            if (field.type === 'timeline') return blockFields.push(field);
+            if (field.type === 'textarea') return blockFields.push(field);
+            if (field.type === 'color') return blockFields.push(field);
+            // Card para tipos simples
+            const card = document.createElement('div');
+            card.className = 'card';
+            if (field.type === 'text' || field.type === 'number') {
+              const h3 = document.createElement('h3');
+              h3.innerText = field.label;
+              if (field.titleColor) h3.style.color = getColor(field.titleColor);
+              card.appendChild(h3);
+              const p = document.createElement('p');
+              p.innerText = field.value;
+              card.appendChild(p);
+            } else if (field.type === 'image') {
+              const h3 = document.createElement('h3');
+              h3.innerText = field.label;
+              if (field.titleColor) h3.style.color = getColor(field.titleColor);
+              card.appendChild(h3);
+              const img = document.createElement('img');
+              img.src = field.value;
+              img.alt = field.label;
+              img.style.maxWidth = '100%';
+              img.style.borderRadius = '8px';
+              img.style.marginTop = '8px';
+              card.appendChild(img);
+            }
+            grid.appendChild(card);
+          });
+          if (grid.children.length) slideDiv.appendChild(grid);
+          // Bloques especiales (textarea, timeline, color)
+          blockFields.forEach(field => {
+            if (field.type === 'textarea') {
+              const block = document.createElement('div');
+              block.className = 'block';
+              const h3 = document.createElement('h3');
+              h3.innerText = field.label;
+              if (field.titleColor) h3.style.color = getColor(field.titleColor);
+              block.appendChild(h3);
+              const p = document.createElement('div');
+              p.innerText = field.value;
+              block.appendChild(p);
+              slideDiv.appendChild(block);
+            } else if (field.type === 'color') {
+              const block = document.createElement('div');
+              block.className = 'block';
+              const h3 = document.createElement('h3');
+              h3.innerText = field.label;
+              if (field.titleColor) h3.style.color = getColor(field.titleColor);
+              block.appendChild(h3);
+              const colorBox = document.createElement('div');
+              colorBox.style.width = '60px';
+              colorBox.style.height = '30px';
+              colorBox.style.borderRadius = '6px';
+              colorBox.style.background = field.value;
+              colorBox.style.border = '1.5px solid #e2e8f0';
+              colorBox.style.margin = '8px 0';
+              block.appendChild(colorBox);
+              slideDiv.appendChild(block);
+            } else if (field.type === 'timeline') {
+              const block = document.createElement('div');
+              block.className = 'timeline-pro';
+              block.innerHTML = '<div class="line"></div>';
+              // Progreso global
+              let total = 0, sum = 0;
+              if (Array.isArray(field.value)) {
+                total = field.value.length;
+                sum = field.value.reduce((acc, s) => acc + (s.progreso||0), 0);
+              }
+              const global = document.createElement('div');
+              global.style.marginBottom = '20px';
+              global.innerHTML = 'Progreso total: <b>' + (total ? Math.round(sum/total) : 0) + '%</b>';
+              block.appendChild(global);
+              // Timeline
+              if (Array.isArray(field.value)) {
+                field.value.forEach((step, i) => {
+                  const div = document.createElement('div');
+                  div.className = 'timeline-item ' + (step.status||'');
+                  div.innerHTML = `
+                    <div class="timeline-card">
+                      <h3${step.titleColor ? ` style=\"color:${getColor(step.titleColor)}\"` : ''}>${step.semana||''}</h3>
+                      <p><b>${step.titulo||''}</b></p>
+                      <p>${step.detalle||''}</p>
+                      <div class="progress-bar"><div style="width:${step.progreso||0}%"></div></div>
+                    </div>
+                    <div class="dot"></div>
+                  `;
+                  block.appendChild(div);
+                });
+              }
+              slideDiv.appendChild(block);
+            }
+          });
+        }
+        document.getElementById('pageContent').appendChild(slideDiv);
+      });
+    }
+    // --- Navegación ---
+    function showSlide(idx) {
+      document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === idx));
+      document.querySelectorAll('.menu-item').forEach((m, i) => m.classList.toggle('active', i === idx));
+    }
+    // --- Pantalla completa ---
+    document.getElementById('fullscreenBtn').onclick = function() {
+      const docElm = document.documentElement;
+      if (!document.fullscreenElement) {
+        if (docElm.requestFullscreen) docElm.requestFullscreen();
+        else if (docElm.mozRequestFullScreen) docElm.mozRequestFullScreen();
+        else if (docElm.webkitRequestFullscreen) docElm.webkitRequestFullscreen();
+        else if (docElm.msRequestFullscreen) docElm.msRequestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        else if (document.msExitFullscreen) document.msExitFullscreen();
+      }
+    };
+    // --- Toast profesional ---
+    function showMessage(msg, color = '#16a34a') {
+      const toast = document.getElementById('toast');
+      let icon = '';
+      toast.className = 'toast';
+      toast.style.display = 'flex';
+      if (color === '#16a34a' || color === 'var(--success)') {
+        toast.classList.add('toast-success');
+        icon = '✔️';
+      } else if (color === '#d32f2f' || color === 'var(--danger)') {
+        toast.classList.add('toast-error');
+        icon = '❌';
+      } else {
+        icon = 'ℹ️';
+      }
+      toast.innerHTML = `<span style='font-size:1.35em;margin-right:6px;'>${icon}</span> <span>${msg}</span>`;
+      setTimeout(() => { toast.classList.add('toast-show'); }, 10);
+      setTimeout(() => {
+        toast.classList.remove('toast-show');
+        setTimeout(() => { toast.className = 'toast'; toast.innerHTML = ''; toast.style.display = 'none'; }, 400);
+      }, 2200);
+    }
+
+    // --- Restaurar valores por defecto ---
+    document.getElementById('restoreBtn').onclick = function() {
+      if (confirm('¿Seguro que quieres restaurar los valores por defecto? Se perderán los cambios no guardados.')) {
+        localStorage.removeItem('roadmap_slides');
+        localStorage.removeItem('roadmap');
+        // JSON por defecto (idéntico al inicial)
+        slides = [
+          {
+            "title": "Resumen Ejecutivo",
+            "color": "#fff",
+            "fields": [
+              {
+                "label": "Objetivo",
+                "type": "text",
+                "value": "Sistema de gestión y control de extintores, diseñado de forma moderna y adaptado a la operación de Maxiseguridad, que permite optimizar los procesos y mejorar la calidad del trabajo en las áreas de logística y taller."
+              },
+              {
+                "label": "Enfoque de transformación digital",
+                "type": "text",
+                "value": "Optimizando los procesos operativos y elevando la calidad del trabajo en logística y taller mediante una solución moderna y adaptada a la operación."
+              },
+              {
+                "label": "Resultado",
+                "type": "text",
+                "value": "Nos va a permitir modernizar nuestros sistemas actuales y mejorar frente a nuestros clientes."
+              },
+              {
+                "label": "Nuestro dolor en el proceso",
+                "type": "textarea",
+                "value": "   - Falta de trazabilidad del estado real de un extintor.\n\n   - Desconexión entre taller y logística.\n\n   - Información dispersa o manual y no en tiempo real.\n\n   - Dificultad para auditar procesos.\n\n   - Errores en movimientos y estados\n\nEl sistema elimina esto centralizando todo en un flujo único digital."
+              }
+            ]
+          },
+          {
+            "title": "Sistema",
+            "color": "#f8fafc",
+            "fields": [
+              {
+                "label": "Backend",
+                "type": "text",
+                "value": "Arquitectura organizada y escalable en NodeJS, Sequelize y Mysql."
+              },
+              {
+                "label": "Frontend",
+                "type": "text",
+                "value": "Dashboard inicial en Vite y React JS."
+              },
+              {
+                "label": "Negocio",
+                "type": "text",
+                "value": "Se inició el relevamiento funcional del sistema actual (SIGEX) y de la operatoria real del taller y su vinculo con los procesos de logistica,"
+              },
+              {
+                "label": "Análisis del sistema actual (SIGEX)",
+                "type": "textarea",
+                "value": "Se realizó un relevamiento inicial de los módulos existentes, entre ellos:\n\n•Gestión de clientes, proveedores y estructuras organizativas.\n\n•Gestión de equipos y planillas de trabajo.\n\n•Módulo de logística (recorridos, retiros, órdenes).\n\n•Facturación y cobranzas.\n\n•Reportes operativos y técnicos.\n\n•Controles periódicos e integración con otros sistemas.\n\nEste análisis permite identificar tanto las funcionalidades necesarias como las oportunidades de mejora en términos de usabilidad, integración y trazabilidad.\n"
+              }
+            ]
+          },
+          {
+            "title": "Etapa Actual",
+            "color": "#fff",
+            "fields": [
+              {
+                "label": "Análisis y Relevamiento Funcional",
+                "type": "text",
+                "value": "Actualmente el foco está en comprender el circuito operativo real, principalmente en el área técnica (taller)."
+              },
+              {
+                "label": "Avances",
+                "type": "textarea",
+                "value": "•Inicio del análisis del ciclo de vida del extintor (desde ingreso al taller hasta egreso). \n\n•Identificación preliminar de etapas del proceso (recepción, inspección, reparación, carga, control, despacho)."
+              },
+              {
+                "label": "Pendientes clave",
+                "type": "textarea",
+                "value": "•Definición del flujo completo junto al responsable del área de taller.\n\n•Formalización del circuito operativo ideal para su posterior implementación.\n"
+              },
+              {
+                "label": "Próximas acciones inmediatas",
+                "type": "textarea",
+                "value": "•Relevamiento del circuito logístico.\n\n•Identificación de puntos de integración entre taller y logística.\n\n"
+              }
+            ]
+          },
+          {
+            "title": "Roadmap de Avance por Etapas",
+            "color": "#fff",
+            "fields": [
+              {
+                "label": "Timeline",
+                "type": "timeline",
+                "value": [
+                  {
+                    "semana": "Etapa 1",
+                    "titulo": "Definición del proceso operativo",
+                    "detalle": "Formalización del flujo del taller, relevamiento del circuito logístico e identificación de puntos de integración entre áreas.",
+                    "status": "done",
+                    "progreso": 100
+                  },
+                  {
+                    "semana": "Etapa 2",
+                    "titulo": "Modelado del sistema",
+                    "detalle": "Definición de estados del extintor, modelado de eventos y transiciones, y diseño de la estructura de datos y lógica backend.",
+                    "status": "active",
+                    "progreso": 60
+                  },
+                  {
+                    "semana": "Etapa 3",
+                    "titulo": "Desarrollo del módulo operativo",
+                    "detalle": "Implementación del circuito operativo del extintor, registro de tareas técnicas, control de insumos e integración con logística (salidas y despachos).",
+                    "status": "pending",
+                    "progreso": 0
+                  },
+                  {
+                    "semana": "Etapa 4",
+                    "titulo": "Desarrollo de interfaces",
+                    "detalle": "Interfaces optimizadas para operarios con foco en velocidad y simplicidad, dashboard de seguimiento operativo y mejora de experiencia de usuario.",
+                    "status": "pending",
+                    "progreso": 0
+                  },
+                  {
+                    "semana": "Etapa 5",
+                    "titulo": "Facturación y administración",
+                    "detalle": "Generación de órdenes de facturación, vinculación con clientes y servicios, y desarrollo de reportes de gestión.",
+                    "status": "pending",
+                    "progreso": 0
+                  },
+                  {
+                    "semana": "Etapa 6",
+                    "titulo": "Testing y validación operativa",
+                    "detalle": "Pruebas con datos reales, validación de roles y seguridad, y ajustes basados en el uso operativo.",
+                    "status": "pending",
+                    "progreso": 0
+                  },
+                  {
+                    "semana": "Etapa 7",
+                    "titulo": "Puesta en producción",
+                    "detalle": "Implementación progresiva del sistema, acompañamiento a usuarios finales y ciclo de mejoras continuas en base a feedback operativo.",
+                    "status": "pending",
+                    "progreso": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ];
+        renderSidebar();
+        renderSlides();
+        showMessage('¡Valores restaurados por defecto!','var(--success)');
+      }
+    };
+
+    // --- Init ---
+    renderSidebar();
+    renderSlides();
+  </script>
+</body>
+</html>
