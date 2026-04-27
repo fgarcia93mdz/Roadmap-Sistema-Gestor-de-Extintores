@@ -415,7 +415,8 @@
   </div>
   <script>
     // --- Estructura dinámica homogénea ---
-    const defaultSlides = [
+    const defaultSlides = 
+    [
         {
           "title": "Introducción",
           "color": "#fff",
@@ -505,42 +506,42 @@
                 {
                   "semana": "Etapa 1",
                   "titulo": "Definición del proceso operativo",
-                  "detalle": "Formalización del flujo de taller.",
+                  "detalle": "Formalización del flujo de taller.\n\nSemana del 27/4 al 2/5.",
                   "status": "done",
                   "progreso": 60
                 },
                 {
                   "semana": "Etapa 2",
                   "titulo": "Modelado del sistema",
-                  "detalle": "Estados del extintor y lógica backend.",
+                  "detalle": "Estados del extintor y lógica backend.\n\nSemana del 4/5 al 8/5.",
                   "status": "active",
                   "progreso": 60
                 },
                 {
                   "semana": "Etapa 3",
                   "titulo": "Desarrollo del módulo operativo",
-                  "detalle": "Circuito operativo del extintor e integración con logística.",
+                  "detalle": "Circuito operativo del extintor e integración con logística.\n\nSemana del 11/5 al 22/5.",
                   "status": "pending",
                   "progreso": 0
                 },
                 {
                   "semana": "Etapa 4",
-                  "titulo": "Interfaces operativas",
-                  "detalle": "UI para operarios y dashboard operativo.",
+                  "titulo": "Interfaces operativas para taller y logística",
+                  "detalle": "UI para operarios y dashboard operativo.\n\nSemana del 26/5 al 8/6.",
                   "status": "pending",
                   "progreso": 20
                 },
                 {
                   "semana": "Etapa 5",
                   "titulo": "Testing y validación",
-                  "detalle": "Pruebas con datos reales y ajustes.",
+                  "detalle": "Pruebas con datos reales y ajustes.\n\nSemana del 8/6 al 22/6.",
                   "status": "pending",
                   "progreso": 20
                 },
                 {
                   "semana": "Etapa 6",
                   "titulo": "Puesta en producción",
-                  "detalle": "Deploy progresivo y mejoras continuas.",
+                  "detalle": "Deploy progresivo por sector y mejoras continuas. Empezando con el área de taller.\n\nSemana del 23/6 al 6/7.",
                   "status": "pending",
                   "progreso": 0
                 }
@@ -559,21 +560,21 @@
                 {
                   "fase": "Concepto",
                   "titulo": "Trazabilidad con QR",
-                  "detalle": "Seguimiento del proceso de extintores mediante códigos QR/NFC/CB.",
+                  "detalle": "Seguimiento del proceso de extintores mediante códigos QR/NFC/CB.\n\nSemana del 11/5 al 22/5.",
                   "status": "active",
                   "progreso": 40
                 },
                 {
                   "fase": "Diseño funcional",
                   "titulo": "Modelo de eventos",
-                  "detalle": "Eventos automáticos por escaneo de QR/NFC/CB dentro de taller.",
+                  "detalle": "Eventos automáticos por escaneo de QR/NFC/CB dentro de taller.\n\nSemana del 11/5 al 22/5.",
                   "status": "active",
                   "progreso": 0
                 },
                 {
                   "fase": "Validación operativa",
                   "titulo": "Flujo en campo",
-                  "detalle": "Prueba en operación real en procesos de taller y logística, con retiros, entregas y controles periódicos.",
+                  "detalle": "Prueba en operación real en procesos de taller y logística, con retiros, entregas y controles periódicos.\n\nSemana del 8/6 al 22/6.",
                   "status": "pending",
                   "progreso": 0
                 }
@@ -592,21 +593,21 @@
                 {
                   "fase": "Fase 1",
                   "titulo": "Definición del proceso",
-                  "detalle": "Flujo operativo base.",
+                  "detalle": "Flujo operativo base.\n\nSin fecha estimativa hasta estar en fechas de Etapa 6.",
                   "status": "done",
                   "progreso": 50
                 },
                 {
                   "fase": "Fase 2",
                   "titulo": "Modelado del sistema",
-                  "detalle": "Backend y estados.",
+                  "detalle": "Backend y estados.\n\nSin fecha estimativa hasta estar en fechas de Etapa 6.",
                   "status": "active",
                   "progreso": 60
                 },
                 {
                   "fase": "Fase 3",
                   "titulo": "Desarrollo",
-                  "detalle": "Implementación del sistema.",
+                  "detalle": "Implementación del sistema.\n\nSin fecha estimativa hasta estar en fechas de Etapa 6.",
                   "status": "pending",
                   "progreso": 0
                 }
@@ -630,8 +631,8 @@
             }
           ]
         }
-      ];
-
+      ]
+      
     let slides;
 
     function renderSlides() {

@@ -124,42 +124,42 @@
                 {
                   "semana": "Etapa 1",
                   "titulo": "Definición del proceso operativo",
-                  "detalle": "Formalización del flujo de taller.",
+                  "detalle": "Formalización del flujo de taller.\n\nSemana del 27/4 al 2/5.",
                   "status": "done",
                   "progreso": 60
                 },
                 {
                   "semana": "Etapa 2",
                   "titulo": "Modelado del sistema",
-                  "detalle": "Estados del extintor y lógica backend.",
+                  "detalle": "Estados del extintor y lógica backend.\n\nSemana del 4/5 al 8/5.",
                   "status": "active",
                   "progreso": 60
                 },
                 {
                   "semana": "Etapa 3",
                   "titulo": "Desarrollo del módulo operativo",
-                  "detalle": "Circuito operativo del extintor e integración con logística.",
+                  "detalle": "Circuito operativo del extintor e integración con logística.\n\nSemana del 11/5 al 22/5.",
                   "status": "pending",
                   "progreso": 0
                 },
                 {
                   "semana": "Etapa 4",
-                  "titulo": "Interfaces operativas",
-                  "detalle": "UI para operarios y dashboard operativo.",
+                  "titulo": "Interfaces operativas para taller y logística",
+                  "detalle": "UI para operarios y dashboard operativo.\n\nSemana del 26/5 al 8/6.",
                   "status": "pending",
                   "progreso": 20
                 },
                 {
                   "semana": "Etapa 5",
                   "titulo": "Testing y validación",
-                  "detalle": "Pruebas con datos reales y ajustes.",
+                  "detalle": "Pruebas con datos reales y ajustes.\n\nSemana del 8/6 al 22/6.",
                   "status": "pending",
                   "progreso": 20
                 },
                 {
                   "semana": "Etapa 6",
                   "titulo": "Puesta en producción",
-                  "detalle": "Deploy progresivo y mejoras continuas.",
+                  "detalle": "Deploy progresivo por sector y mejoras continuas. Empezando con el área de taller.\n\nSemana del 23/6 al 6/7.",
                   "status": "pending",
                   "progreso": 0
                 }
@@ -178,21 +178,21 @@
                 {
                   "fase": "Concepto",
                   "titulo": "Trazabilidad con QR",
-                  "detalle": "Seguimiento del proceso de extintores mediante códigos QR/NFC/CB.",
+                  "detalle": "Seguimiento del proceso de extintores mediante códigos QR/NFC/CB.\n\nSemana del 11/5 al 22/5.",
                   "status": "active",
                   "progreso": 40
                 },
                 {
                   "fase": "Diseño funcional",
                   "titulo": "Modelo de eventos",
-                  "detalle": "Eventos automáticos por escaneo de QR/NFC/CB dentro de taller.",
+                  "detalle": "Eventos automáticos por escaneo de QR/NFC/CB dentro de taller.\n\nSemana del 11/5 al 22/5.",
                   "status": "active",
                   "progreso": 0
                 },
                 {
                   "fase": "Validación operativa",
                   "titulo": "Flujo en campo",
-                  "detalle": "Prueba en operación real en procesos de taller y logística, con retiros, entregas y controles periódicos.",
+                  "detalle": "Prueba en operación real en procesos de taller y logística, con retiros, entregas y controles periódicos.\n\nSemana del 8/6 al 22/6.",
                   "status": "pending",
                   "progreso": 0
                 }
@@ -211,21 +211,21 @@
                 {
                   "fase": "Fase 1",
                   "titulo": "Definición del proceso",
-                  "detalle": "Flujo operativo base.",
+                  "detalle": "Flujo operativo base.\n\nSin fecha estimativa hasta estar en fechas de Etapa 6.",
                   "status": "done",
                   "progreso": 50
                 },
                 {
                   "fase": "Fase 2",
                   "titulo": "Modelado del sistema",
-                  "detalle": "Backend y estados.",
+                  "detalle": "Backend y estados.\n\nSin fecha estimativa hasta estar en fechas de Etapa 6.",
                   "status": "active",
                   "progreso": 60
                 },
                 {
                   "fase": "Fase 3",
                   "titulo": "Desarrollo",
-                  "detalle": "Implementación del sistema.",
+                  "detalle": "Implementación del sistema.\n\nSin fecha estimativa hasta estar en fechas de Etapa 6.",
                   "status": "pending",
                   "progreso": 0
                 }
@@ -441,222 +441,223 @@
         localStorage.removeItem('roadmap_slides');
         localStorage.removeItem('roadmap');
         // JSON por defecto (idéntico al inicial)
-        slides = [
-          {
-            "title": "Introducción",
-            "color": "#fff",
-            "fields": [
-              {
-                "label": "Objetivo",
-                "type": "text",
-                "value": "Desarrollo de un sistema de gestión y control de extintores, diseñado de forma moderna y adaptado a la operación de Maxiseguridad, que permitirá optimizar los procesos y mejorar la calidad del trabajo en las áreas de logística y taller."
-              },
-              {
-                "label": "Enfoque de transformación digital",
-                "type": "text",
-                "value": "Optimizando los procesos operativos y elevando la calidad del trabajo en logística y taller mediante una solución moderna y adaptada a la operación."
-              },
-              {
-                "label": "Resultado",
-                "type": "text",
-                "value": "Nos permitirá modernizar nuestros sistemas actuales y mejorar frente a nuestros clientes."
-              },
-              {
-                "label": "Nuestro dolor en el proceso",
-                "type": "textarea",
-                "value": "   - Falta de trazabilidad del estado real de un extintor.\n\n   - Desconexión entre taller y logística, a nivel de software.\n\n   - Información dispersa o manual y no en tiempo real.\n\n   - Dificultad para auditar procesos.\n\n   - Errores en movimientos y estados.\n\n El desarrollo de un nuevo sistema buscará eliminar estos dolores centralizando todo en un flujo único digital, con fluidez y pragmatismo."
-              }
-            ]
-          },
-          {
-            "title": "Sistema",
-            "color": "#f8fafc",
-            "fields": [
-              {
-                "label": "Backend",
-                "type": "text",
-                "value": "Arquitectura organizada y escalable en NodeJS, Sequelize y Mysql."
-              },
-              {
-                "label": "Frontend",
-                "type": "text",
-                "value": "Dashboard inicial en Vite y React JS."
-              },
-              {
-                "label": "Negocio",
-                "type": "text",
-                "value": "Se inició el relevamiento funcional del sistema actual (SIGEX) y de la operatoria real del taller y su vínculo con los procesos de logística."
-              },
-              {
-                "label": "Análisis del sistema actual (SIGEX)",
-                "type": "textarea",
-                "value": "Se realizó un relevamiento inicial de los módulos existentes:\n\n• Gestión de clientes, proveedores y estructuras organizativas.\n• Gestión de equipos y planillas de trabajo.\n• Módulo de logística (recorridos, retiros, órdenes).\n• Facturación y cobranzas.\n• Reportes operativos y técnicos.\n• Controles periódicos e integración con otros sistemas.\n\nEste análisis permite identificar funcionalidades y oportunidades de mejora en usabilidad, integración y trazabilidad."
-              }
-            ]
-          },
-          {
-            "title": "Etapa Actual",
-            "color": "#fff",
-            "fields": [
-              {
-                "label": "Análisis y Relevamiento Funcional",
-                "type": "text",
-                "value": "Actualmente el foco está en comprender el circuito operativo real, principalmente en el área de taller."
-              },
-              {
-                "label": "Avances",
-                "type": "textarea",
-                "value": "• Inicio del análisis del ciclo de vida del extintor.\n• Identificación de etapas: recepción, inspección, reparación, pendiente de aprobación, carga, control, estampillado y despacho."
-              },
-              {
-                "label": "Pendientes clave",
-                "type": "textarea",
-                "value": "• Definición del flujo completo con el área de taller.\n• Formalización del circuito operativo ideal."
-              },
-              {
-                "label": "Próximas acciones inmediatas",
-                "type": "textarea",
-                "value": "• Relevamiento del circuito logístico.\n• Integración entre taller y logística."
-              }
-            ]
-          },
-          {
-            "title": "Roadmap de Avance por Etapas",
-            "color": "#fff",
-            "fields": [
-              {
-                "label": "Timeline",
-                "type": "timeline",
-                "value": [
-                  {
-                    "semana": "Etapa 1",
-                    "titulo": "Definición del proceso operativo",
-                    "detalle": "Formalización del flujo de taller.",
-                    "status": "done",
-                    "progreso": 60
-                  },
-                  {
-                    "semana": "Etapa 2",
-                    "titulo": "Modelado del sistema",
-                    "detalle": "Estados del extintor y lógica backend.",
-                    "status": "active",
-                    "progreso": 60
-                  },
-                  {
-                    "semana": "Etapa 3",
-                    "titulo": "Desarrollo del módulo operativo",
-                    "detalle": "Circuito operativo del extintor e integración con logística.",
-                    "status": "pending",
-                    "progreso": 0
-                  },
-                  {
-                    "semana": "Etapa 4",
-                    "titulo": "Interfaces operativas",
-                    "detalle": "UI para operarios y dashboard operativo.",
-                    "status": "pending",
-                    "progreso": 20
-                  },
-                  {
-                    "semana": "Etapa 5",
-                    "titulo": "Testing y validación",
-                    "detalle": "Pruebas con datos reales y ajustes.",
-                    "status": "pending",
-                    "progreso": 20
-                  },
-                  {
-                    "semana": "Etapa 6",
-                    "titulo": "Puesta en producción",
-                    "detalle": "Deploy progresivo y mejoras continuas.",
-                    "status": "pending",
-                    "progreso": 0
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "title": "Línea de Mejora e Innovación",
-            "color": "#fff",
-            "fields": [
-              {
-                "label": "Investigación QR y Trazabilidad",
-                "type": "timeline",
-                "value": [
-                  {
-                    "fase": "Concepto",
-                    "titulo": "Trazabilidad con QR",
-                    "detalle": "Seguimiento del proceso de extintores mediante códigos QR/NFC/CB.",
-                    "status": "active",
-                    "progreso": 40
-                  },
-                  {
-                    "fase": "Diseño funcional",
-                    "titulo": "Modelo de eventos",
-                    "detalle": "Eventos automáticos por escaneo de QR/NFC/CB dentro de taller.",
-                    "status": "active",
-                    "progreso": 0
-                  },
-                  {
-                    "fase": "Validación operativa",
-                    "titulo": "Flujo en campo",
-                    "detalle": "Prueba en operación real en procesos de taller y logística, con retiros, entregas y controles periódicos.",
-                    "status": "pending",
-                    "progreso": 0
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "title": "Roadmap de Producción",
-            "color": "#fff",
-            "fields": [
-              {
-                "label": "Plan de entrega",
-                "type": "timeline",
-                "value": [
-                  {
-                    "fase": "Fase 1",
-                    "titulo": "Definición del proceso",
-                    "detalle": "Flujo operativo base.",
-                    "status": "done",
-                    "progreso": 50
-                  },
-                  {
-                    "fase": "Fase 2",
-                    "titulo": "Modelado del sistema",
-                    "detalle": "Backend y estados.",
-                    "status": "active",
-                    "progreso": 60
-                  },
-                  {
-                    "fase": "Fase 3",
-                    "titulo": "Desarrollo",
-                    "detalle": "Implementación del sistema.",
-                    "status": "pending",
-                    "progreso": 0
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "title": "Conclusión",
-            "color": "#fff",
-            "fields": [
-              {
-                "label": "Resumen general",
-                "type": "textarea",
-                "value": "Este sistema representará una transformación operativa profunda del negocio, donde la tecnología es el habilitador, pero el verdadero cambio ocurrirá en la forma de trabajar, coordinar y controlar los procesos.\n\nEl éxito del proyecto no solo se medirá por la implementación técnica, sino por la adopción y mejora real en la operación diaria, logrando una gestión de extintores más eficiente, transparente y alineada con las necesidades de Maxiseguridad.\n\nUna clara mejoria es poder ampliar los procesos de taller que hoy se encuentran o se ven desde una macro general a una micro de cada extintor u orden, en la cual sepamos en todo momento en que parte del proceso se encuentra cada extintor, quien lo tiene, que le hicieron, que le falta, etc. Esto permitirá una trazabilidad total y una mejora en la gestión de los procesos."
-              },
-              {
-                "label": "Proyección",
-                "type": "textarea",
-                "value": "El avance global estimado del sistema es del 26% considerando el desarrollo técnico y la definición funcional, con un enfoque claro en la validación operativa como próximo paso crítico.\n\nEl roadmap proyecta una entrega progresiva, con hitos claros en cada etapa, permitiendo iterar y ajustar el desarrollo según las necesidades reales del taller y logística, asegurando que la solución final sea efectiva y adoptada por los usuarios."
-              }
-            ]
-          }
-        ];
+        slides = 
+        [
+            {
+              "title": "Introducción",
+              "color": "#fff",
+              "fields": [
+                {
+                  "label": "Objetivo",
+                  "type": "text",
+                  "value": "Desarrollo de un sistema de gestión y control de extintores, diseñado de forma moderna y adaptado a la operación de Maxiseguridad, que permitirá optimizar los procesos y mejorar la calidad del trabajo en las áreas de logística y taller."
+                },
+                {
+                  "label": "Enfoque de transformación digital",
+                  "type": "text",
+                  "value": "Optimizando los procesos operativos y elevando la calidad del trabajo en logística y taller mediante una solución moderna y adaptada a la operación."
+                },
+                {
+                  "label": "Resultado",
+                  "type": "text",
+                  "value": "Nos permitirá modernizar nuestros sistemas actuales y mejorar frente a nuestros clientes."
+                },
+                {
+                  "label": "Nuestro dolor en el proceso",
+                  "type": "textarea",
+                  "value": "   - Falta de trazabilidad del estado real de un extintor.\n\n   - Desconexión entre taller y logística, a nivel de software.\n\n   - Información dispersa o manual y no en tiempo real.\n\n   - Dificultad para auditar procesos.\n\n   - Errores en movimientos y estados.\n\n El desarrollo de un nuevo sistema buscará eliminar estos dolores centralizando todo en un flujo único digital, con fluidez y pragmatismo."
+                }
+              ]
+            },
+            {
+              "title": "Sistema",
+              "color": "#f8fafc",
+              "fields": [
+                {
+                  "label": "Backend",
+                  "type": "text",
+                  "value": "Arquitectura organizada y escalable en NodeJS, Sequelize y Mysql."
+                },
+                {
+                  "label": "Frontend",
+                  "type": "text",
+                  "value": "Dashboard inicial en Vite y React JS."
+                },
+                {
+                  "label": "Negocio",
+                  "type": "text",
+                  "value": "Se inició el relevamiento funcional del sistema actual (SIGEX) y de la operatoria real del taller y su vínculo con los procesos de logística."
+                },
+                {
+                  "label": "Análisis del sistema actual (SIGEX)",
+                  "type": "textarea",
+                  "value": "Se realizó un relevamiento inicial de los módulos existentes:\n\n• Gestión de clientes, proveedores y estructuras organizativas.\n• Gestión de equipos y planillas de trabajo.\n• Módulo de logística (recorridos, retiros, órdenes).\n• Facturación y cobranzas.\n• Reportes operativos y técnicos.\n• Controles periódicos e integración con otros sistemas.\n\nEste análisis permite identificar funcionalidades y oportunidades de mejora en usabilidad, integración y trazabilidad."
+                }
+              ]
+            },
+            {
+              "title": "Etapa Actual",
+              "color": "#fff",
+              "fields": [
+                {
+                  "label": "Análisis y Relevamiento Funcional",
+                  "type": "text",
+                  "value": "Actualmente el foco está en comprender el circuito operativo real, principalmente en el área de taller."
+                },
+                {
+                  "label": "Avances",
+                  "type": "textarea",
+                  "value": "• Inicio del análisis del ciclo de vida del extintor.\n• Identificación de etapas: recepción, inspección, reparación, pendiente de aprobación, carga, control, estampillado y despacho."
+                },
+                {
+                  "label": "Pendientes clave",
+                  "type": "textarea",
+                  "value": "• Definición del flujo completo con el área de taller.\n• Formalización del circuito operativo ideal."
+                },
+                {
+                  "label": "Próximas acciones inmediatas",
+                  "type": "textarea",
+                  "value": "• Relevamiento del circuito logístico.\n• Integración entre taller y logística."
+                }
+              ]
+            },
+            {
+              "title": "Roadmap de Avance por Etapas",
+              "color": "#fff",
+              "fields": [
+                {
+                  "label": "Timeline",
+                  "type": "timeline",
+                  "value": [
+                    {
+                      "semana": "Etapa 1",
+                      "titulo": "Definición del proceso operativo",
+                      "detalle": "Formalización del flujo de taller.\n\nSemana del 27/4 al 2/5.",
+                      "status": "done",
+                      "progreso": 60
+                    },
+                    {
+                      "semana": "Etapa 2",
+                      "titulo": "Modelado del sistema",
+                      "detalle": "Estados del extintor y lógica backend.\n\nSemana del 4/5 al 8/5.",
+                      "status": "active",
+                      "progreso": 60
+                    },
+                    {
+                      "semana": "Etapa 3",
+                      "titulo": "Desarrollo del módulo operativo",
+                      "detalle": "Circuito operativo del extintor e integración con logística.\n\nSemana del 11/5 al 22/5.",
+                      "status": "pending",
+                      "progreso": 0
+                    },
+                    {
+                      "semana": "Etapa 4",
+                      "titulo": "Interfaces operativas para taller y logística",
+                      "detalle": "UI para operarios y dashboard operativo.\n\nSemana del 26/5 al 8/6.",
+                      "status": "pending",
+                      "progreso": 20
+                    },
+                    {
+                      "semana": "Etapa 5",
+                      "titulo": "Testing y validación",
+                      "detalle": "Pruebas con datos reales y ajustes.\n\nSemana del 8/6 al 22/6.",
+                      "status": "pending",
+                      "progreso": 20
+                    },
+                    {
+                      "semana": "Etapa 6",
+                      "titulo": "Puesta en producción",
+                      "detalle": "Deploy progresivo por sector y mejoras continuas. Empezando con el área de taller.\n\nSemana del 23/6 al 6/7.",
+                      "status": "pending",
+                      "progreso": 0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Línea de Mejora e Innovación",
+              "color": "#fff",
+              "fields": [
+                {
+                  "label": "Investigación QR y Trazabilidad",
+                  "type": "timeline",
+                  "value": [
+                    {
+                      "fase": "Concepto",
+                      "titulo": "Trazabilidad con QR",
+                      "detalle": "Seguimiento del proceso de extintores mediante códigos QR/NFC/CB.\n\nSemana del 11/5 al 22/5.",
+                      "status": "active",
+                      "progreso": 40
+                    },
+                    {
+                      "fase": "Diseño funcional",
+                      "titulo": "Modelo de eventos",
+                      "detalle": "Eventos automáticos por escaneo de QR/NFC/CB dentro de taller.\n\nSemana del 11/5 al 22/5.",
+                      "status": "active",
+                      "progreso": 0
+                    },
+                    {
+                      "fase": "Validación operativa",
+                      "titulo": "Flujo en campo",
+                      "detalle": "Prueba en operación real en procesos de taller y logística, con retiros, entregas y controles periódicos.\n\nSemana del 8/6 al 22/6.",
+                      "status": "pending",
+                      "progreso": 0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Roadmap de Producción",
+              "color": "#fff",
+              "fields": [
+                {
+                  "label": "Plan de entrega",
+                  "type": "timeline",
+                  "value": [
+                    {
+                      "fase": "Fase 1",
+                      "titulo": "Definición del proceso",
+                      "detalle": "Flujo operativo base.\n\nSin fecha estimativa hasta estar en fechas de Etapa 6.",
+                      "status": "done",
+                      "progreso": 50
+                    },
+                    {
+                      "fase": "Fase 2",
+                      "titulo": "Modelado del sistema",
+                      "detalle": "Backend y estados.\n\nSin fecha estimativa hasta estar en fechas de Etapa 6.",
+                      "status": "active",
+                      "progreso": 60
+                    },
+                    {
+                      "fase": "Fase 3",
+                      "titulo": "Desarrollo",
+                      "detalle": "Implementación del sistema.\n\nSin fecha estimativa hasta estar en fechas de Etapa 6.",
+                      "status": "pending",
+                      "progreso": 0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Conclusión",
+              "color": "#fff",
+              "fields": [
+                {
+                  "label": "Resumen general",
+                  "type": "textarea",
+                  "value": "Este sistema representará una transformación operativa profunda del negocio, donde la tecnología es el habilitador, pero el verdadero cambio ocurrirá en la forma de trabajar, coordinar y controlar los procesos.\n\nEl éxito del proyecto no solo se medirá por la implementación técnica, sino por la adopción y mejora real en la operación diaria, logrando una gestión de extintores más eficiente, transparente y alineada con las necesidades de Maxiseguridad.\n\nUna clara mejoria es poder ampliar los procesos de taller que hoy se encuentran o se ven desde una macro general a una micro de cada extintor u orden, en la cual sepamos en todo momento en que parte del proceso se encuentra cada extintor, quien lo tiene, que le hicieron, que le falta, etc. Esto permitirá una trazabilidad total y una mejora en la gestión de los procesos."
+                },
+                {
+                  "label": "Proyección",
+                  "type": "textarea",
+                  "value": "El avance global estimado del sistema es del 26% considerando el desarrollo técnico y la definición funcional, con un enfoque claro en la validación operativa como próximo paso crítico.\n\nEl roadmap proyecta una entrega progresiva, con hitos claros en cada etapa, permitiendo iterar y ajustar el desarrollo según las necesidades reales del taller y logística, asegurando que la solución final sea efectiva y adoptada por los usuarios."
+                }
+              ]
+            }
+          ];
         renderSidebar();
         renderSlides();
         showMessage('¡Valores restaurados por defecto!', 'var(--success)');
