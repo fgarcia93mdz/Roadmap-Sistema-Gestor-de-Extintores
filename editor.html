@@ -607,7 +607,7 @@
         header.className = 'slide-header';
         const titleInput = document.createElement('input');
         titleInput.type = 'text';
-        titleInput.value = slide.title;
+        titleInput.value = slide.title || '';
         titleInput.placeholder = 'Título de la slide';
         titleInput.oninput = e => { slide.title = e.target.value; renderPreview(); };
         header.appendChild(titleInput);
@@ -644,131 +644,144 @@
         }
         header.appendChild(actions);
         slideDiv.appendChild(header);
-        // Campos
-        const fieldsDiv = document.createElement('div');
-        fieldsDiv.className = 'fields-list';
-        slide.fields.forEach((field, fidx) => {
-          const fieldDiv = document.createElement('div');
-          fieldDiv.className = 'field-card';
-          // Label
-          const labelInput = document.createElement('input');
-          labelInput.type = 'text';
-          labelInput.value = field.label;
-          labelInput.placeholder = 'Nombre del campo';
-          labelInput.oninput = e => { field.label = e.target.value; renderPreview(); };
-          fieldDiv.appendChild(labelInput);
-          // Tipo
-          const typeSel = document.createElement('select');
-          ['text','textarea','color','number','image','timeline'].forEach(t => {
-            const opt = document.createElement('option');
-            opt.value = t;
-            opt.innerText = t.charAt(0).toUpperCase()+t.slice(1);
-            if (field.type===t) opt.selected = true;
-            typeSel.appendChild(opt);
-          });
-          typeSel.onchange = e => { field.type = e.target.value; if(field.type==='timeline')field.value=[]; renderSlides(); renderPreview(); };
-          fieldDiv.appendChild(typeSel);
-          // Valor
-          if (field.type==='text') {
-            const val = document.createElement('input');
-            val.type = 'text';
-            val.value = field.value||'';
-            val.placeholder = 'Valor';
-            val.oninput = e => { field.value = e.target.value; renderPreview(); };
-            fieldDiv.appendChild(val);
-          } else if (field.type==='textarea') {
-            const val = document.createElement('textarea');
-            val.value = field.value||'';
-            val.placeholder = 'Valor';
-            val.oninput = e => { field.value = e.target.value; renderPreview(); };
-            fieldDiv.appendChild(val);
-          } else if (field.type==='color') {
-            const val = document.createElement('input');
-            val.type = 'color';
-            val.value = field.value||'#2563eb';
-            val.oninput = e => { field.value = e.target.value; renderPreview(); };
-            fieldDiv.appendChild(val);
-          } else if (field.type==='number') {
-            const val = document.createElement('input');
-            val.type = 'number';
-            val.value = field.value||0;
-            val.oninput = e => { field.value = Number(e.target.value); renderPreview(); };
-            fieldDiv.appendChild(val);
-          } else if (field.type==='image') {
-            const val = document.createElement('input');
-            val.type = 'text';
-            val.value = field.value||'';
-            val.placeholder = 'URL de imagen';
-            val.oninput = e => { field.value = e.target.value; renderPreview(); };
-            fieldDiv.appendChild(val);
-          } else if (field.type==='timeline') {
-            const timelineDiv = document.createElement('div');
-            timelineDiv.style.display = 'flex';
-            timelineDiv.style.flexDirection = 'column';
-            timelineDiv.style.gap = '8px';
-            (field.value||[]).forEach((item, tidx) => {
-              const row = document.createElement('div');
-              row.style.display = 'flex';
-              row.style.gap = '6px';
-              ['semana','titulo','detalle','status','progreso'].forEach(k => {
-                const inp = document.createElement('input');
-                inp.type = k==='progreso'?'number':'text';
-                inp.value = item[k]||'';
-                inp.placeholder = k.charAt(0).toUpperCase()+k.slice(1);
-                inp.style.width = k==='detalle'?'120px':'80px';
-                inp.oninput = e => { item[k]=k==='progreso'?Number(e.target.value):e.target.value; renderPreview(); };
-                row.appendChild(inp);
-              });
-              const del = document.createElement('button');
-              del.innerText = '🗑';
-              del.title = 'Eliminar etapa';
-              del.onclick = ()=>{ field.value.splice(tidx,1); renderSlides(); renderPreview(); };
-              row.appendChild(del);
-              timelineDiv.appendChild(row);
+        // Renderizar campos si existen
+        if (Array.isArray(slide.fields)) {
+          const fieldsDiv = document.createElement('div');
+          fieldsDiv.className = 'fields-list';
+          slide.fields.forEach((field, fidx) => {
+            const fieldDiv = document.createElement('div');
+            fieldDiv.className = 'field-card';
+            // Label
+            const labelInput = document.createElement('input');
+            labelInput.type = 'text';
+            labelInput.value = field.label || '';
+            labelInput.placeholder = 'Nombre del campo';
+            labelInput.oninput = e => { field.label = e.target.value; renderPreview(); };
+            fieldDiv.appendChild(labelInput);
+            // Tipo
+            const typeSel = document.createElement('select');
+            ['text','textarea','color','number','image','timeline'].forEach(t => {
+              const opt = document.createElement('option');
+              opt.value = t;
+              opt.innerText = t.charAt(0).toUpperCase()+t.slice(1);
+              if (field.type===t) opt.selected = true;
+              typeSel.appendChild(opt);
             });
-            const addT = document.createElement('button');
-            addT.innerText = '+ Etapa';
-            addT.className = 'add-btn';
-            addT.onclick = ()=>{ field.value.push({semana:'',titulo:'',detalle:'',status:'pending',progreso:0}); renderSlides(); renderPreview(); };
-            timelineDiv.appendChild(addT);
-            fieldDiv.appendChild(timelineDiv);
-          }
-          // Acciones campo
-          const fActions = document.createElement('div');
-          fActions.className = 'field-actions';
-          const delF = document.createElement('button');
-          delF.innerText = '🗑';
-          delF.title = 'Eliminar campo';
-          delF.onclick = ()=>{ slide.fields.splice(fidx,1); renderSlides(); renderPreview(); };
-          fActions.appendChild(delF);
-          if (fidx > 0) {
-            const upF = document.createElement('button');
-            upF.innerText = '⬆️';
-            upF.title = 'Subir campo';
-            upF.onclick = ()=>{ [slide.fields[fidx-1],slide.fields[fidx]]=[slide.fields[fidx],slide.fields[fidx-1]]; renderSlides(); renderPreview(); };
-            fActions.appendChild(upF);
-          }
-          if (fidx < slide.fields.length-1) {
-            const downF = document.createElement('button');
-            downF.innerText = '⬇️';
-            downF.title = 'Bajar campo';
-            downF.onclick = ()=>{ [slide.fields[fidx+1],slide.fields[fidx]]=[slide.fields[fidx],slide.fields[fidx+1]]; renderSlides(); renderPreview(); };
-            fActions.appendChild(downF);
-          }
-          fieldDiv.appendChild(fActions);
-          fieldsDiv.appendChild(fieldDiv);
-        });
-        // Botón agregar campo
-        const addField = document.createElement('button');
-        addField.className = 'add-btn';
-        addField.innerText = '+ Agregar campo';
-        addField.onclick = ()=>{
-          slide.fields.push({label:'Nuevo campo',type:'text',value:''});
-          renderSlides();
-          renderPreview();
-        };
-        fieldsDiv.appendChild(addField);
-        slideDiv.appendChild(fieldsDiv);
+            typeSel.onchange = e => { field.type = e.target.value; if(field.type==='timeline')field.value=[]; renderSlides(); renderPreview(); };
+            fieldDiv.appendChild(typeSel);
+            // Valor
+            if (field.type==='text') {
+              const val = document.createElement('input');
+              val.type = 'text';
+              val.value = field.value||'';
+              val.placeholder = 'Valor';
+              val.oninput = e => { field.value = e.target.value; renderPreview(); };
+              fieldDiv.appendChild(val);
+            } else if (field.type==='textarea') {
+              const val = document.createElement('textarea');
+              val.value = field.value||'';
+              val.placeholder = 'Valor';
+              val.oninput = e => { field.value = e.target.value; renderPreview(); };
+              fieldDiv.appendChild(val);
+            } else if (field.type==='color') {
+              const val = document.createElement('input');
+              val.type = 'color';
+              val.value = field.value||'#2563eb';
+              val.oninput = e => { field.value = e.target.value; renderPreview(); };
+              fieldDiv.appendChild(val);
+            } else if (field.type==='number') {
+              const val = document.createElement('input');
+              val.type = 'number';
+              val.value = field.value||0;
+              val.oninput = e => { field.value = Number(e.target.value); renderPreview(); };
+              fieldDiv.appendChild(val);
+            } else if (field.type==='image') {
+              const val = document.createElement('input');
+              val.type = 'text';
+              val.value = field.value||'';
+              val.placeholder = 'URL de imagen';
+              val.oninput = e => { field.value = e.target.value; renderPreview(); };
+              fieldDiv.appendChild(val);
+            } else if (field.type==='timeline') {
+              const timelineDiv = document.createElement('div');
+              timelineDiv.style.display = 'flex';
+              timelineDiv.style.flexDirection = 'column';
+              timelineDiv.style.gap = '8px';
+              (field.value||[]).forEach((item, tidx) => {
+                const row = document.createElement('div');
+                row.style.display = 'flex';
+                row.style.gap = '6px';
+                // Soporte flexible para keys
+                Object.keys(item).forEach(k => {
+                  const inp = document.createElement('input');
+                  inp.type = (k==='progreso'||k==='progress')?'number':'text';
+                  inp.value = item[k]||'';
+                  inp.placeholder = k.charAt(0).toUpperCase()+k.slice(1);
+                  inp.style.width = k==='detalle'?'120px':'80px';
+                  inp.oninput = e => { item[k]=(k==='progreso'||k==='progress')?Number(e.target.value):e.target.value; renderPreview(); };
+                  row.appendChild(inp);
+                });
+                const del = document.createElement('button');
+                del.innerText = '🗑';
+                del.title = 'Eliminar etapa';
+                del.onclick = ()=>{ field.value.splice(tidx,1); renderSlides(); renderPreview(); };
+                row.appendChild(del);
+                timelineDiv.appendChild(row);
+              });
+              const addT = document.createElement('button');
+              addT.innerText = '+ Etapa';
+              addT.className = 'add-btn';
+              addT.onclick = ()=>{ field.value.push({}); renderSlides(); renderPreview(); };
+              timelineDiv.appendChild(addT);
+              fieldDiv.appendChild(timelineDiv);
+            }
+            // Acciones campo
+            const fActions = document.createElement('div');
+            fActions.className = 'field-actions';
+            const delF = document.createElement('button');
+            delF.innerText = '🗑';
+            delF.title = 'Eliminar campo';
+            delF.onclick = ()=>{ slide.fields.splice(fidx,1); renderSlides(); renderPreview(); };
+            fActions.appendChild(delF);
+            if (fidx > 0) {
+              const upF = document.createElement('button');
+              upF.innerText = '⬆️';
+              upF.title = 'Subir campo';
+              upF.onclick = ()=>{ [slide.fields[fidx-1],slide.fields[fidx]]=[slide.fields[fidx],slide.fields[fidx-1]]; renderSlides(); renderPreview(); };
+              fActions.appendChild(upF);
+            }
+            if (fidx < slide.fields.length-1) {
+              const downF = document.createElement('button');
+              downF.innerText = '⬇️';
+              downF.title = 'Bajar campo';
+              downF.onclick = ()=>{ [slide.fields[fidx+1],slide.fields[fidx]]=[slide.fields[fidx],slide.fields[fidx+1]]; renderSlides(); renderPreview(); };
+              fActions.appendChild(downF);
+            }
+            fieldDiv.appendChild(fActions);
+            fieldsDiv.appendChild(fieldDiv);
+          });
+          // Botón agregar campo
+          const addField = document.createElement('button');
+          addField.className = 'add-btn';
+          addField.innerText = '+ Agregar campo';
+          addField.onclick = ()=>{
+            slide.fields.push({label:'Nuevo campo',type:'text',value:''});
+            renderSlides();
+            renderPreview();
+          };
+          fieldsDiv.appendChild(addField);
+          slideDiv.appendChild(fieldsDiv);
+        } else if (slide.content) {
+          // Renderizar contenido tipo resumen/conclusión
+          const contentDiv = document.createElement('div');
+          contentDiv.className = 'field-card';
+          contentDiv.style.background = '#f8fafc';
+          contentDiv.style.fontSize = '1.08rem';
+          contentDiv.style.fontWeight = '500';
+          contentDiv.style.margin = '12px 0';
+          contentDiv.innerHTML = `<pre style="white-space:pre-wrap;word-break:break-word;font-family:inherit;background:none;padding:0;margin:0;">${JSON.stringify(slide.content,null,2)}</pre>`;
+          slideDiv.appendChild(contentDiv);
+        }
         root.appendChild(slideDiv);
       });
     }
