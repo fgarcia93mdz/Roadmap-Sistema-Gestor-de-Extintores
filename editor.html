@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Editor Visual de Roadmap</title>
@@ -14,18 +15,22 @@
       --text: #0f172a;
       --muted: #64748b;
     }
-    * { box-sizing: border-box; }
-        /* Toast flotante */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Toast flotante */
     .toast {
       position: fixed;
       right: 32px;
       bottom: 32px;
       min-width: 220px;
       max-width: 340px;
-      background: rgba(30,41,59,0.96);
+      background: rgba(30, 41, 59, 0.96);
       color: #fff;
       border-radius: 16px;
-      box-shadow: 0 12px 48px 0 rgba(30,41,59,0.25), 0 2px 8px 0 rgba(37,99,235,0.13);
+      box-shadow: 0 12px 48px 0 rgba(30, 41, 59, 0.25), 0 2px 8px 0 rgba(37, 99, 235, 0.13);
       padding: 18px 32px;
       font-size: 1.13rem;
       font-weight: 600;
@@ -40,24 +45,29 @@
       border: none;
       letter-spacing: 0.01em;
     }
+
     .toast.toast-show {
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0) scale(1);
     }
+
     .toast.toast-error {
-      background: rgba(220,38,38,0.98);
+      background: rgba(220, 38, 38, 0.98);
       color: #fff;
     }
+
     .toast.toast-success {
-      background: rgba(22,163,74,0.98);
+      background: rgba(22, 163, 74, 0.98);
       color: #fff;
     }
+
     .toast .toast-icon {
       font-size: 1.35em;
       margin-right: 6px;
       display: inline-block;
     }
+
     /* Fondo gradiente SaaS */
     body {
       margin: 0;
@@ -66,15 +76,16 @@
       color: var(--text);
       min-height: 100vh;
     }
+
     /* Contenedor premium glass */
     .editor-container {
-      background: rgba(255,255,255,0.85);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(226,232,240,0.7);
+      border: 1px solid rgba(226, 232, 240, 0.7);
       margin: 36px auto;
       padding: 40px;
       border-radius: 24px;
-      box-shadow: 0 20px 60px rgba(15,23,42,0.08);
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
       max-width: 1100px;
       width: 98vw;
       min-width: 340px;
@@ -82,6 +93,7 @@
       flex-direction: column;
       gap: 24px;
     }
+
     /* Título gradiente tipo producto */
     h1 {
       font-size: 2.3rem;
@@ -93,33 +105,38 @@
       margin-bottom: 10px;
       margin-top: 0;
     }
+
     .slides-list {
       display: flex;
       flex-direction: column;
       gap: 18px;
       margin-bottom: 18px;
     }
+
     /* Slide card premium */
     .slide-card {
       background: #ffffff;
       border-radius: 18px;
       padding: 26px;
       border: 1px solid #eef2f7;
-      box-shadow: 0 6px 20px rgba(15,23,42,0.04);
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
       transition: all 0.25s ease;
       position: relative;
       margin-bottom: 18px;
     }
+
     .slide-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 18px 50px rgba(37,99,235,0.12);
+      box-shadow: 0 18px 50px rgba(37, 99, 235, 0.12);
     }
+
     .slide-header {
       display: flex;
       align-items: center;
       gap: 14px;
       margin-bottom: 14px;
     }
+
     .slide-header input[type="text"] {
       font-size: 1.18rem;
       font-weight: 600;
@@ -130,11 +147,13 @@
       flex: 1;
       padding: 2px 0;
     }
+
     .slide-actions {
       margin-left: auto;
       display: flex;
       gap: 8px;
     }
+
     .slide-actions button {
       background: #e2e8f0;
       color: var(--danger);
@@ -145,15 +164,18 @@
       cursor: pointer;
       transition: background 0.18s;
     }
+
     .slide-actions button:hover {
       background: #fee2e2;
     }
+
     .fields-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 18px;
       margin-bottom: 10px;
     }
+
     /* Field card pro */
     .field-card {
       background: #ffffff;
@@ -167,11 +189,13 @@
       gap: 8px;
       position: relative;
     }
+
     .field-card:hover {
       transform: scale(1.01);
       border-color: #c7d2fe;
-      box-shadow: 0 10px 25px rgba(37,99,235,0.08);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.08);
     }
+
     .field-actions {
       position: absolute;
       top: 8px;
@@ -179,6 +203,7 @@
       display: flex;
       gap: 4px;
     }
+
     .field-actions button {
       background: #e2e8f0;
       color: var(--muted);
@@ -189,10 +214,12 @@
       cursor: pointer;
       transition: background 0.18s, color 0.18s;
     }
+
     .field-actions button:hover {
       background: #fee2e2;
       color: var(--danger);
     }
+
     /* Botón add tipo app moderna */
     .add-btn {
       background: linear-gradient(135deg, #2563eb, #3b82f6);
@@ -200,7 +227,7 @@
       border-radius: 12px;
       padding: 10px 18px;
       font-weight: 600;
-      box-shadow: 0 10px 20px rgba(37,99,235,0.2);
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
       transition: all 0.2s ease;
       border: none;
       margin-top: 8px;
@@ -210,10 +237,12 @@
       width: fit-content;
       height: 50px;
     }
+
     .add-btn:hover {
       transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(37,99,235,0.3);
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.3);
     }
+
     /* Acciones jerarquía visual */
     .actions {
       display: flex;
@@ -221,42 +250,68 @@
       justify-content: flex-end;
       margin-top: 18px;
     }
+
     .actions button {
       border-radius: 12px;
       padding: 10px 18px;
       font-weight: 600;
       transition: all 0.2s ease;
-      box-shadow: 0 6px 16px rgba(15,23,42,0.08);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
       font-size: 1.08rem;
       border: none;
       cursor: pointer;
     }
+
     .actions button:hover {
       transform: translateY(-1px);
     }
-    .actions button:nth-child(1) { background: var(--primary); color: #fff; }
-    .actions button:nth-child(1):hover { background: #1746a2; }
-    .actions button:nth-child(2) { background: #16a34a; color: #fff; }
-    .actions button:nth-child(2):hover { background: #0e7c2f; }
-    .actions button:nth-child(3) { background: #f59e42; color: #fff; }
-    .actions button:nth-child(3):hover { background: #b45309; }
+
+    .actions button:nth-child(1) {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .actions button:nth-child(1):hover {
+      background: #1746a2;
+    }
+
+    .actions button:nth-child(2) {
+      background: #16a34a;
+      color: #fff;
+    }
+
+    .actions button:nth-child(2):hover {
+      background: #0e7c2f;
+    }
+
+    .actions button:nth-child(3) {
+      background: #f59e42;
+      color: #fff;
+    }
+
+    .actions button:nth-child(3):hover {
+      background: #b45309;
+    }
+
     /* Preview panel técnico */
     .preview-container {
       background: #0f172a;
       color: #e2e8f0;
       border-radius: 14px;
       padding: 18px 24px;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
       margin-top: 18px;
       overflow-x: auto;
       max-width: 100%;
     }
+
     .preview-title {
       color: #60a5fa;
       font-size: 1.18rem;
       font-weight: 600;
       margin-bottom: 10px;
     }
+
     .preview-container pre {
       white-space: pre-wrap;
       word-break: break-word;
@@ -270,14 +325,18 @@
       max-width: 100%;
       overflow-x: auto;
     }
+
     .error {
       color: var(--danger);
       font-weight: 600;
       margin-bottom: 8px;
       text-align: center;
     }
+
     /* Inputs modernos */
-    input, textarea, select {
+    input,
+    textarea,
+    select {
       border: 1px solid #e2e8f0;
       border-radius: 10px;
       padding: 8px 10px;
@@ -286,9 +345,12 @@
       transition: all 0.2s;
       background: #fff;
     }
-    input:focus, textarea:focus, select:focus {
+
+    input:focus,
+    textarea:focus,
+    select:focus {
       border-color: #2563eb;
-      box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
     }
 
     /* Scrollbar custom */
@@ -296,21 +358,32 @@
       scrollbar-width: thin;
       scrollbar-color: #cbd5e1 transparent;
     }
+
     ::-webkit-scrollbar {
       width: 8px;
     }
+
     ::-webkit-scrollbar-thumb {
       background: #cbd5e1;
       border-radius: 8px;
     }
 
     @media (max-width: 700px) {
-      .editor-container { padding: 16px 2vw; }
-      .slide-card { padding: 12px 4vw; }
-      .fields-list { grid-template-columns: 1fr; }
+      .editor-container {
+        padding: 16px 2vw;
+      }
+
+      .slide-card {
+        padding: 12px 4vw;
+      }
+
+      .fields-list {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="editor-container">
     <div id="toast" class="toast"></div>
@@ -322,7 +395,8 @@
       <button onclick="saveAll()">💾 Guardar</button>
       <button onclick="exportJSON()">⬇️ Exportar JSON</button>
       <button onclick="importJSON()">⬆️ Importar JSON</button>
-      <button onclick="restoreDefaults()" style="background:var(--danger);color:#fff;">Restaurar valores por defecto</button>
+      <button onclick="restoreDefaults()" style="background:var(--danger);color:#fff;">Restaurar valores por
+        defecto</button>
       <input type="file" id="importFile" accept="application/json" style="display:none" />
     </div>
     <div class="preview-container">
@@ -330,8 +404,10 @@
       <pre id="jsonPreview" style="font-size:1.01rem;line-height:1.5;color:#334155;"></pre>
     </div>
     <div style="font-size:0.98rem;color:#64748b;margin-top:8px;max-width:900px;">
-      <b>Tips:</b> Puedes agregar slides, campos, colores, imágenes, timeline, etc. El roadmap se actualizará automáticamente.<br>
-      <b>Para agregar campos:</b> Usa el botón “+ Campo” en cada slide. Puedes elegir tipo (texto, color, imagen, número, timeline, etc.).
+      <b>Tips:</b> Puedes agregar slides, campos, colores, imágenes, timeline, etc. El roadmap se actualizará
+      automáticamente.<br>
+      <b>Para agregar campos:</b> Usa el botón “+ Campo” en cada slide. Puedes elegir tipo (texto, color, imagen,
+      número, timeline, etc.).
     </div>
   </div>
   <div class="back-link">
@@ -340,83 +416,6 @@
   <script>
     // --- Estructura dinámica homogénea ---
     const defaultSlides = [
-      {
-        title: "Resumen Ejecutivo",
-        color: "#fff",
-        fields: [
-          { label: "Objetivo", type: "text", value: "Sistema de gestión y control de extintores, diseñado de forma moderna y adaptado a la operación de Maxiseguridad, que permite optimizar los procesos y mejorar la calidad del trabajo en las áreas de logística y taller." },
-          { label: "Enfoque de transformación digital", type: "text", value: "Optimizando los procesos operativos y elevando la calidad del trabajo en logística y taller mediante una solución moderna y adaptada a la operación." },
-          { label: "Resultado", type: "text", value: "Nos va a permitir modernizar nuestros sistemas actuales y mejorar frente a nuestros clientes." },
-          { label: "Nuestro dolor en el proceso", type: "textarea", value: "   - Falta de trazabilidad del estado real de un extintor.\n\n   - Desconexión entre taller y logística.\n\n   - Información dispersa o manual y no en tiempo real.\n\n   - Dificultad para auditar procesos.\n\n   - Errores en movimientos y estados\n\nEl sistema elimina esto centralizando todo en un flujo único digital." }
-        ],
-        content: null
-      },
-      {
-        title: "Sistema",
-        color: "#f8fafc",
-        fields: [
-          { label: "Backend", type: "text", value: "Arquitectura organizada y escalable en NodeJS, Sequelize y Mysql." },
-          { label: "Frontend", type: "text", value: "Dashboard inicial en Vite y React JS." },
-          { label: "Negocio", type: "text", value: "Se inició el relevamiento funcional del sistema actual (SIGEX) y de la operatoria real del taller y su vinculo con los procesos de logistica," },
-          { label: "Análisis del sistema actual (SIGEX)", type: "textarea", value: "Se realizó un relevamiento inicial de los módulos existentes, entre ellos:\n\n•Gestión de clientes, proveedores y estructuras organizativas.\n\n•Gestión de equipos y planillas de trabajo.\n\n•Módulo de logística (recorridos, retiros, órdenes).\n\n•Facturación y cobranzas.\n\n•Reportes operativos y técnicos.\n\n•Controles periódicos e integración con otros sistemas.\n\nEste análisis permite identificar tanto las funcionalidades necesarias como las oportunidades de mejora en términos de usabilidad, integración y trazabilidad.\n" }
-        ],
-        content: null
-      },
-      {
-        title: "Etapa Actual",
-        color: "#fff",
-        fields: [
-          { label: "Análisis y Relevamiento Funcional", type: "text", value: "Actualmente el foco está en comprender el circuito operativo real, principalmente en el área técnica (taller)." },
-          { label: "Avances", type: "textarea", value: "•Inicio del análisis del ciclo de vida del extintor (desde ingreso al taller hasta egreso). \n\n•Identificación preliminar de etapas del proceso (recepción, inspección, reparación, carga, control, despacho)." },
-          { label: "Pendientes clave", type: "textarea", value: "•Definición del flujo completo junto al responsable del área de taller.\n\n•Formalización del circuito operativo ideal para su posterior implementación.\n" },
-          { label: "Próximas acciones inmediatas", type: "textarea", value: "•Relevamiento del circuito logístico.\n\n•Identificación de puntos de integración entre taller y logística.\n\n" }
-        ],
-        content: null
-      },
-      {
-        title: "Roadmap de Avance por Etapas",
-        color: "#fff",
-        fields: [
-          { label: "Timeline", type: "timeline", value: [
-            { semana: "Etapa 1", titulo: "Definición del proceso operativo", detalle: "Formalización del flujo del taller, relevamiento del circuito logístico e identificación de puntos de integración entre áreas.", status: "done", progreso: 100 },
-            { semana: "Etapa 2", titulo: "Modelado del sistema", detalle: "Definición de estados del extintor, modelado de eventos y transiciones, y diseño de la estructura de datos y lógica backend.", status: "active", progreso: 60 },
-            { semana: "Etapa 3", titulo: "Desarrollo del módulo operativo", detalle: "Implementación del circuito operativo del extintor, registro de tareas técnicas, control de insumos e integración con logística (salidas y despachos).", status: "pending", progreso: 0 },
-            { semana: "Etapa 4", titulo: "Desarrollo de interfaces", detalle: "Interfaces optimizadas para operarios con foco en velocidad y simplicidad, dashboard de seguimiento operativo y mejora de experiencia de usuario.", status: "pending", progreso: 0 },
-            { semana: "Etapa 5", titulo: "Facturación y administración", detalle: "Generación de órdenes de facturación, vinculación con clientes y servicios, y desarrollo de reportes de gestión.", status: "pending", progreso: 0 },
-            { semana: "Etapa 6", titulo: "Testing y validación operativa", detalle: "Pruebas con datos reales, validación de roles y seguridad, y ajustes basados en el uso operativo.", status: "pending", progreso: 0 },
-            { semana: "Etapa 7", titulo: "Puesta en producción", detalle: "Implementación progresiva del sistema, acompañamiento a usuarios finales y ciclo de mejoras continuas en base a feedback operativo.", status: "pending", progreso: 0 }
-          ] }
-        ],
-        content: null
-      },
-      {
-        title: "Línea de Mejora e Innovación (R&D)",
-        color: "#fff",
-        fields: [
-          { label: "Investigación QR y Trazabilidad", type: "timeline", value: [
-            { fase: "Concepto", titulo: "Trazabilidad en tiempo real con QR", detalle: "Evaluación de un sistema para digitalizar el seguimiento del extintor a través de códigos QR y eventos en tiempo real.", status: "active", progreso: 40 },
-            { fase: "Diseño funcional", titulo: "Modelo de eventos y escaneo", detalle: "Definición de cómo el escaneo de QR genera eventos, actualiza estados y registra movimientos automáticamente.", status: "active", progreso: 50 },
-            { fase: "Validación operativa", titulo: "Flujo en campo", detalle: "Análisis del impacto en taller y logística, validación de usabilidad en operación real.", status: "pending", progreso: 0 },
-            { fase: "Beneficios esperados", titulo: "Impacto operativo", detalle: "Reducción de carga manual, mejora de trazabilidad y visibilidad en tiempo real entre áreas.", status: "pending", progreso: 0 }
-          ] }
-        ],
-        content: null
-      },
-      {
-        title: "Roadmap de Producción",
-        color: "#fff",
-        fields: [
-          { label: "Plan de entrega", type: "timeline", value: [
-            { fase: "Fase 1", titulo: "Definición del proceso operativo", detalle: "Formalización del flujo del taller, circuito logístico e integración entre áreas.", status: "done", progreso: 100 },
-            { fase: "Fase 2", titulo: "Modelado del sistema", detalle: "Definición de estados del extintor, eventos y estructura backend.", status: "active", progreso: 60 },
-            { fase: "Fase 3", titulo: "Desarrollo del módulo operativo", detalle: "Circuito operativo del extintor, tareas técnicas e integración con logística.", status: "pending", progreso: 0 },
-            { fase: "Fase 4", titulo: "Interfaces operativas", detalle: "UI para operarios, dashboard y optimización de experiencia de uso.", status: "pending", progreso: 0 },
-            { fase: "Fase 5", titulo: "Testing y validación", detalle: "Pruebas con datos reales, validación de roles y ajustes operativos.", status: "pending", progreso: 0 },
-            { fase: "Fase 6", titulo: "Puesta en producción", detalle: "Deploy progresivo, acompañamiento a usuarios y mejoras continuas.", status: "pending", progreso: 0 }
-          ] }
-        ],
-        content: null
-      },
         {
           "title": "Resumen Ejecutivo",
           "color": "#fff",
@@ -460,12 +459,12 @@
             {
               "label": "Negocio",
               "type": "text",
-              "value": "Se inició el relevamiento funcional del sistema actual (SIGEX) y de la operatoria real del taller y su vinculo con los procesos de logistica."
+              "value": "Se inició el relevamiento funcional del sistema actual (SIGEX) y de la operatoria real del taller y su vínculo con los procesos de logística."
             },
             {
               "label": "Análisis del sistema actual (SIGEX)",
               "type": "textarea",
-              "value": "Se realizó un relevamiento inicial de los módulos existentes, entre ellos:\n\n• Gestión de clientes, proveedores y estructuras organizativas.\n• Gestión de equipos y planillas de trabajo.\n• Módulo de logística (recorridos, retiros, órdenes).\n• Facturación y cobranzas.\n• Reportes operativos y técnicos.\n• Controles periódicos e integración con otros sistemas.\n\nEste análisis permite identificar tanto las funcionalidades necesarias como las oportunidades de mejora en términos de usabilidad, integración y trazabilidad."
+              "value": "Se realizó un relevamiento inicial de los módulos existentes:\n\n• Gestión de clientes, proveedores y estructuras organizativas.\n• Gestión de equipos y planillas de trabajo.\n• Módulo de logística (recorridos, retiros, órdenes).\n• Facturación y cobranzas.\n• Reportes operativos y técnicos.\n• Controles periódicos e integración con otros sistemas.\n\nEste análisis permite identificar funcionalidades y oportunidades de mejora en usabilidad, integración y trazabilidad."
             }
           ]
         },
@@ -481,17 +480,17 @@
             {
               "label": "Avances",
               "type": "textarea",
-              "value": "• Inicio del análisis del ciclo de vida del extintor (desde ingreso al taller hasta egreso).\n• Identificación preliminar de etapas del proceso (recepción, inspección, reparación, carga, control, despacho)."
+              "value": "• Inicio del análisis del ciclo de vida del extintor.\n• Identificación de etapas: recepción, inspección, reparación, carga, control y despacho."
             },
             {
               "label": "Pendientes clave",
               "type": "textarea",
-              "value": "• Definición del flujo completo junto al responsable del área de taller.\n• Formalización del circuito operativo ideal para su posterior implementación."
+              "value": "• Definición del flujo completo con el área de taller.\n• Formalización del circuito operativo ideal."
             },
             {
               "label": "Próximas acciones inmediatas",
               "type": "textarea",
-              "value": "• Relevamiento del circuito logístico.\n• Identificación de puntos de integración entre taller y logística."
+              "value": "• Relevamiento del circuito logístico.\n• Integración entre taller y logística."
             }
           ]
         },
@@ -516,6 +515,100 @@
                   "detalle": "Estados del extintor y lógica backend.",
                   "status": "active",
                   "progreso": 60
+                },
+                {
+                  "semana": "Etapa 3",
+                  "titulo": "Desarrollo del módulo operativo",
+                  "detalle": "Circuito operativo del extintor e integración con logística.",
+                  "status": "pending",
+                  "progreso": 0
+                },
+                {
+                  "semana": "Etapa 4",
+                  "titulo": "Interfaces operativas",
+                  "detalle": "UI para operarios y dashboard operativo.",
+                  "status": "pending",
+                  "progreso": 0
+                },
+                {
+                  "semana": "Etapa 5",
+                  "titulo": "Testing y validación",
+                  "detalle": "Pruebas con datos reales y ajustes.",
+                  "status": "pending",
+                  "progreso": 0
+                },
+                {
+                  "semana": "Etapa 6",
+                  "titulo": "Puesta en producción",
+                  "detalle": "Deploy progresivo y mejoras continuas.",
+                  "status": "pending",
+                  "progreso": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Línea de Mejora e Innovación (R&D)",
+          "color": "#fff",
+          "fields": [
+            {
+              "label": "Investigación QR y Trazabilidad",
+              "type": "timeline",
+              "value": [
+                {
+                  "fase": "Concepto",
+                  "titulo": "Trazabilidad con QR",
+                  "detalle": "Seguimiento de extintores mediante códigos QR.",
+                  "status": "active",
+                  "progreso": 40
+                },
+                {
+                  "fase": "Diseño funcional",
+                  "titulo": "Modelo de eventos",
+                  "detalle": "Eventos automáticos por escaneo de QR.",
+                  "status": "active",
+                  "progreso": 50
+                },
+                {
+                  "fase": "Validación operativa",
+                  "titulo": "Flujo en campo",
+                  "detalle": "Prueba en operación real.",
+                  "status": "pending",
+                  "progreso": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Roadmap de Producción",
+          "color": "#fff",
+          "fields": [
+            {
+              "label": "Plan de entrega",
+              "type": "timeline",
+              "value": [
+                {
+                  "fase": "Fase 1",
+                  "titulo": "Definición del proceso",
+                  "detalle": "Flujo operativo base.",
+                  "status": "done",
+                  "progreso": 100
+                },
+                {
+                  "fase": "Fase 2",
+                  "titulo": "Modelado del sistema",
+                  "detalle": "Backend y estados.",
+                  "status": "active",
+                  "progreso": 60
+                },
+                {
+                  "fase": "Fase 3",
+                  "titulo": "Desarrollo",
+                  "detalle": "Implementación del sistema.",
+                  "status": "pending",
+                  "progreso": 0
                 }
               ]
             }
@@ -528,36 +621,36 @@
             {
               "label": "resumen_general",
               "type": "textarea",
-              "value": "El proyecto se encuentra en un estado técnico sólido, con una arquitectura escalable y un avance significativo en el desarrollo del sistema de gestión. Actualmente, el foco principal no está en la construcción tecnológica, sino en la alineación precisa del sistema con los procesos operativos reales del negocio."
+              "value": "El proyecto se encuentra en un estado técnico sólido con arquitectura escalable y avance significativo. El foco actual es la alineación con los procesos reales del negocio."
             },
             {
               "label": "estado_actual",
               "type": "text",
-              "value": "En etapa de definición funcional y validación operativa, con backend y frontend base ya implementados."
+              "value": "Definición funcional y validación operativa en curso."
             },
             {
               "label": "situacion_clave",
               "type": "text",
-              "value": "El principal factor crítico no es técnico, sino la correcta definición de los procesos entre taller, logística y operación."
+              "value": "El factor crítico es la correcta definición de procesos entre áreas."
             },
             {
               "label": "condicion_exito",
               "type": "textarea",
-              "value": "• Validación temprana con usuarios reales\n• Definición clara de flujos operativos\n• Reducción de cambios estructurales\n• Alineación constante entre negocio y sistema"
+              "value": "• Validación con usuarios reales\n• Flujos operativos claros\n• Menos cambios estructurales\n• Alineación negocio-sistema"
             },
             {
               "label": "vision_final",
               "type": "textarea",
-              "value": "Construir una plataforma centralizada de control operativo para extintores, con trazabilidad completa e integración entre áreas."
+              "value": "Plataforma centralizada de control operativo con trazabilidad completa."
             },
             {
               "label": "mensaje_cierre",
               "type": "textarea",
-              "value": "El sistema no es solo tecnología, sino una transformación operativa del negocio."
+              "value": "El sistema es una transformación operativa, no solo tecnológica."
             }
           ]
         }
-    ];
+      ];
 
     let slides;
 
@@ -591,21 +684,21 @@
           const delBtn = document.createElement('button');
           delBtn.innerText = '🗑';
           delBtn.title = 'Eliminar slide';
-          delBtn.onclick = () => { slides.splice(sidx,1); update(); };
+          delBtn.onclick = () => { slides.splice(sidx, 1); update(); };
           actions.appendChild(delBtn);
         }
         if (sidx > 0) {
           const upBtn = document.createElement('button');
           upBtn.innerText = '⬆️';
           upBtn.title = 'Subir';
-          upBtn.onclick = () => { [slides[sidx-1],slides[sidx]]=[slides[sidx],slides[sidx-1]]; update(); };
+          upBtn.onclick = () => { [slides[sidx - 1], slides[sidx]] = [slides[sidx], slides[sidx - 1]]; update(); };
           actions.appendChild(upBtn);
         }
-        if (sidx < slides.length-1) {
+        if (sidx < slides.length - 1) {
           const downBtn = document.createElement('button');
           downBtn.innerText = '⬇️';
           downBtn.title = 'Bajar';
-          downBtn.onclick = () => { [slides[sidx+1],slides[sidx]]=[slides[sidx],slides[sidx+1]]; update(); };
+          downBtn.onclick = () => { [slides[sidx + 1], slides[sidx]] = [slides[sidx], slides[sidx + 1]]; update(); };
           actions.appendChild(downBtn);
         }
         header.appendChild(actions);
@@ -626,77 +719,77 @@
             fieldDiv.appendChild(labelInput);
             // Tipo
             const typeSel = document.createElement('select');
-            ['text','textarea','color','number','image','timeline'].forEach(t => {
+            ['text', 'textarea', 'color', 'number', 'image', 'timeline'].forEach(t => {
               const opt = document.createElement('option');
               opt.value = t;
-              opt.innerText = t.charAt(0).toUpperCase()+t.slice(1);
-              if (field.type===t) opt.selected = true;
+              opt.innerText = t.charAt(0).toUpperCase() + t.slice(1);
+              if (field.type === t) opt.selected = true;
               typeSel.appendChild(opt);
             });
-            typeSel.onchange = e => { field.type = e.target.value; if(field.type==='timeline')field.value=[]; update(); };
+            typeSel.onchange = e => { field.type = e.target.value; if (field.type === 'timeline') field.value = []; update(); };
             fieldDiv.appendChild(typeSel);
             // Valor
-            if (field.type==='text') {
+            if (field.type === 'text') {
               const val = document.createElement('input');
               val.type = 'text';
-              val.value = field.value||'';
+              val.value = field.value || '';
               val.placeholder = 'Valor';
               val.oninput = e => { field.value = e.target.value; update(); };
               fieldDiv.appendChild(val);
-            } else if (field.type==='textarea') {
+            } else if (field.type === 'textarea') {
               const val = document.createElement('textarea');
-              val.value = field.value||'';
+              val.value = field.value || '';
               val.placeholder = 'Valor';
               val.oninput = e => { field.value = e.target.value; update(); };
               fieldDiv.appendChild(val);
-            } else if (field.type==='color') {
+            } else if (field.type === 'color') {
               const val = document.createElement('input');
               val.type = 'color';
-              val.value = field.value||'#2563eb';
+              val.value = field.value || '#2563eb';
               val.oninput = e => { field.value = e.target.value; update(); };
               fieldDiv.appendChild(val);
-            } else if (field.type==='number') {
+            } else if (field.type === 'number') {
               const val = document.createElement('input');
               val.type = 'number';
-              val.value = field.value||0;
+              val.value = field.value || 0;
               val.oninput = e => { field.value = Number(e.target.value); update(); };
               fieldDiv.appendChild(val);
-            } else if (field.type==='image') {
+            } else if (field.type === 'image') {
               const val = document.createElement('input');
               val.type = 'text';
-              val.value = field.value||'';
+              val.value = field.value || '';
               val.placeholder = 'URL de imagen';
               val.oninput = e => { field.value = e.target.value; update(); };
               fieldDiv.appendChild(val);
-            } else if (field.type==='timeline') {
+            } else if (field.type === 'timeline') {
               const timelineDiv = document.createElement('div');
               timelineDiv.style.display = 'flex';
               timelineDiv.style.flexDirection = 'column';
               timelineDiv.style.gap = '8px';
-              (field.value||[]).forEach((item, tidx) => {
+              (field.value || []).forEach((item, tidx) => {
                 const row = document.createElement('div');
                 row.style.display = 'flex';
                 row.style.gap = '6px';
                 Object.keys(item).forEach(k => {
                   const inp = document.createElement('input');
-                  inp.type = (k==='progreso'||k==='progress')?'number':'text';
-                  inp.value = item[k]||'';
-                  inp.placeholder = k.charAt(0).toUpperCase()+k.slice(1);
-                  inp.style.width = k==='detalle'?'120px':'80px';
-                  inp.oninput = e => { item[k]=(k==='progreso'||k==='progress')?Number(e.target.value):e.target.value; update(); };
+                  inp.type = (k === 'progreso' || k === 'progress') ? 'number' : 'text';
+                  inp.value = item[k] || '';
+                  inp.placeholder = k.charAt(0).toUpperCase() + k.slice(1);
+                  inp.style.width = k === 'detalle' ? '120px' : '80px';
+                  inp.oninput = e => { item[k] = (k === 'progreso' || k === 'progress') ? Number(e.target.value) : e.target.value; update(); };
                   row.appendChild(inp);
                 });
                 const del = document.createElement('button');
                 del.innerText = '🗑';
                 del.title = 'Eliminar etapa';
-                del.onclick = ()=>{ field.value.splice(tidx,1); update(); };
+                del.onclick = () => { field.value.splice(tidx, 1); update(); };
                 row.appendChild(del);
                 timelineDiv.appendChild(row);
               });
               const addT = document.createElement('button');
               addT.innerText = '+ Etapa';
               addT.className = 'add-btn';
-              addT.onclick = ()=>{ field.value.push({}); update(); };
+              addT.onclick = () => { field.value.push({}); update(); };
               timelineDiv.appendChild(addT);
               fieldDiv.appendChild(timelineDiv);
             }
@@ -706,20 +799,20 @@
             const delF = document.createElement('button');
             delF.innerText = '🗑';
             delF.title = 'Eliminar campo';
-            delF.onclick = ()=>{ slide.fields.splice(fidx,1); update(); };
+            delF.onclick = () => { slide.fields.splice(fidx, 1); update(); };
             fActions.appendChild(delF);
             if (fidx > 0) {
               const upF = document.createElement('button');
               upF.innerText = '⬆️';
               upF.title = 'Subir campo';
-              upF.onclick = ()=>{ [slide.fields[fidx-1],slide.fields[fidx]]=[slide.fields[fidx],slide.fields[fidx-1]]; update(); };
+              upF.onclick = () => { [slide.fields[fidx - 1], slide.fields[fidx]] = [slide.fields[fidx], slide.fields[fidx - 1]]; update(); };
               fActions.appendChild(upF);
             }
-            if (fidx < slide.fields.length-1) {
+            if (fidx < slide.fields.length - 1) {
               const downF = document.createElement('button');
               downF.innerText = '⬇️';
               downF.title = 'Bajar campo';
-              downF.onclick = ()=>{ [slide.fields[fidx+1],slide.fields[fidx]]=[slide.fields[fidx],slide.fields[fidx+1]]; update(); };
+              downF.onclick = () => { [slide.fields[fidx + 1], slide.fields[fidx]] = [slide.fields[fidx], slide.fields[fidx + 1]]; update(); };
               fActions.appendChild(downF);
             }
             fieldDiv.appendChild(fActions);
@@ -729,8 +822,8 @@
           const addField = document.createElement('button');
           addField.className = 'add-btn';
           addField.innerText = '+ Agregar campo';
-          addField.onclick = ()=>{
-            slide.fields.push({label:'Nuevo campo',type:'text',value:''});
+          addField.onclick = () => {
+            slide.fields.push({ label: 'Nuevo campo', type: 'text', value: '' });
             update();
           };
           fieldsDiv.appendChild(addField);
@@ -743,14 +836,14 @@
           contentDiv.style.fontSize = '1.08rem';
           contentDiv.style.fontWeight = '500';
           contentDiv.style.margin = '12px 0';
-          contentDiv.innerHTML = `<pre style="white-space:pre-wrap;word-break:break-word;font-family:inherit;background:none;padding:0;margin:0;">${JSON.stringify(slide.content,null,2)}</pre>`;
+          contentDiv.innerHTML = `<pre style="white-space:pre-wrap;word-break:break-word;font-family:inherit;background:none;padding:0;margin:0;">${JSON.stringify(slide.content, null, 2)}</pre>`;
           slideDiv.appendChild(contentDiv);
         }
         root.appendChild(slideDiv);
       });
     }
     function addSlide() {
-      slides.push({title:'Nueva Slide',color:'#fff',fields:[],content:null});
+      slides.push({ title: 'Nueva Slide', color: '#fff', fields: [], content: null });
       update();
     }
     function renderPreview() {
@@ -765,7 +858,7 @@
       showMessage('¡Datos guardados!');
     }
     function exportJSON() {
-      const blob = new Blob([JSON.stringify(slides, null, 2)], {type: 'application/json'});
+      const blob = new Blob([JSON.stringify(slides, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -779,11 +872,11 @@
     function importJSON() {
       document.getElementById('importFile').click();
     }
-    document.getElementById('importFile').addEventListener('change', function(e) {
+    document.getElementById('importFile').addEventListener('change', function (e) {
       const file = e.target.files[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = function(evt) {
+      reader.onload = function (evt) {
         try {
           const data = JSON.parse(evt.target.result);
           if (Array.isArray(data)) {
@@ -794,12 +887,12 @@
               content: s.content || null
             }));
             update();
-            showMessage('JSON importado. ¡No olvides guardar!','#2563eb');
+            showMessage('JSON importado. ¡No olvides guardar!', '#2563eb');
           } else {
-            showMessage('El archivo no tiene la estructura esperada.','#d32f2f');
+            showMessage('El archivo no tiene la estructura esperada.', '#d32f2f');
           }
         } catch {
-          showMessage('Archivo inválido.','#d32f2f');
+          showMessage('Archivo inválido.', '#d32f2f');
         }
       };
       reader.readAsText(file);
@@ -838,7 +931,7 @@
           content: s.content || null
         }));
         update();
-        showMessage('¡Valores restaurados por defecto!','var(--success)');
+        showMessage('¡Valores restaurados por defecto!', 'var(--success)');
       }
     }
     // Init robusto: solo usa localStorage si es válido y no vacío
@@ -890,4 +983,5 @@
     }
   </script>
 </body>
+
 </html>
