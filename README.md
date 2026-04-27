@@ -1,30 +1,30 @@
-# 🚀 Roadmap de Avance y Proyección a Producción
+# Roadmap de Avance y Proyección a Producción
 
 ## Sistema de Gestión (MERN Stack)
 
 ---
 
-## 🎯 Objetivo
+## Objetivo
 
 Construir una versión **funcional, usable y validada en producción (Beta controlada)** en un plazo de **6 a 8 semanas**, alineada con la operación real del negocio.
 
 ---
 
-# 🧱 Estado Actual
+# Estado Actual
 
-### ✔ Backend
+### -Backend
 
 * Arquitectura Node.js + Sequelize escalable
 * RBAC implementado
 * Base preparada para crecimiento modular
 
-### ✔ Frontend
+### -Frontend
 
 * Dashboard inicial funcional
 * Conectado a API
 * Soporte de paginación y lazy loading
 
-### ✔ Negocio
+### -Negocio
 
 * Relevamiento inicial de SIGEX
 * Identificación de módulos clave
@@ -32,7 +32,7 @@ Construir una versión **funcional, usable y validada en producción (Beta contr
 
 ---
 
-# ⚠️ Gap Actual (lo que falta)
+# Gap Actual (lo que falta)
 
 * Flujo operativo validado 100%
 * Definición formal de estados
@@ -41,9 +41,9 @@ Construir una versión **funcional, usable y validada en producción (Beta contr
 
 ---
 
-# 🗺️ Roadmap Ejecutivo + Técnico
+# Roadmap Ejecutivo + Técnico
 
-## 🧩 Estructura de trabajo por capas
+##Estructura de trabajo por capas
 
 Cada semana se trabaja en paralelo:
 
@@ -54,9 +54,9 @@ Cada semana se trabaja en paralelo:
 
 ---
 
-# ⏱️ Timeline Detallado
+# Timeline Detallado
 
-## 🔵 Semana 1 — Relevamiento Crítico
+## Semana 1 — Relevamiento Crítico
 
 ### Negocio
 
@@ -73,11 +73,11 @@ Cada semana se trabaja en paralelo:
 
 ### Output
 
-✔ Diagrama validado del ciclo del extintor
+-Diagrama validado del ciclo del extintor
 
 ---
 
-## 🔵 Semana 2 — Modelado
+## Semana 2 — Modelado
 
 ### Backend
 
@@ -95,11 +95,11 @@ Cada semana se trabaja en paralelo:
 
 ### Output
 
-✔ Flujo funcionando a nivel técnico
+-Flujo funcionando a nivel técnico
 
 ---
 
-## 🔵 Semana 3 — Core Operativo
+## Semana 3 — Core Operativo
 
 ### Backend
 
@@ -116,11 +116,11 @@ Cada semana se trabaja en paralelo:
 
 ### Output
 
-✔ Primer flujo end-to-end
+-Primer flujo end-to-end
 
 ---
 
-## 🔵 Semana 4 — Logística
+## Semana 4 — Logística
 
 ### Backend
 
@@ -136,11 +136,11 @@ Cada semana se trabaja en paralelo:
 
 ### Output
 
-✔ Flujo completo taller + logística
+- Flujo completo taller + logística
 
 ---
 
-## 🔵 Semana 5 — UX + Performance
+## Semana 5 — UX + Performance
 
 ### Frontend
 
@@ -158,11 +158,11 @@ Cada semana se trabaja en paralelo:
 
 ### Output
 
-✔ Sistema usable en operación real
+-Sistema usable en operación real
 
 ---
 
-## 🔵 Semana 6 — Testing Real
+## Semana 6 — Testing Real
 
 ### QA
 
@@ -179,11 +179,11 @@ Cada semana se trabaja en paralelo:
 
 ### Output
 
-✔ Sistema validado operativamente
+-Sistema validado operativamente
 
 ---
 
-## 🔵 Semana 7 — Beta Controlada
+## Semana 7 — Beta Controlada
 
 ### Deploy
 
@@ -199,7 +199,7 @@ Cada semana se trabaja en paralelo:
 
 ---
 
-## 🔵 Semana 8 — Estabilización
+## Semana 8 — Estabilización
 
 * Ajustes finales
 * Mejora de performance
@@ -207,7 +207,7 @@ Cada semana se trabaja en paralelo:
 
 ---
 
-# 🧪 Testing Strategy (esto te faltaba fuerte)
+# Testing Strategy (esto te faltaba fuerte)
 
 ## Backend
 
@@ -228,7 +228,7 @@ Cada semana se trabaja en paralelo:
 
 ---
 
-# 🧠 Ritmo de Trabajo
+# Ritmo de Trabajo
 
 ## Semanal
 
@@ -245,16 +245,16 @@ Cada semana se trabaja en paralelo:
 
 ---
 
-# ⚠️ Riesgos Reales
+# Riesgos Reales
 
-* ❌ Procesos mal definidos → rehacer backend
-* ❌ Baja adopción por mala UX
-* ❌ Desalineación con logística
-* ❌ Scope creep (facturación, extras)
+* Procesos mal definidos → rehacer backend
+* Baja adopción por mala UX
+* Desalineación con logística
+* Scope creep (facturación, extras)
 
 ---
 
-# 🚀 Innovación (Fase 2)
+# Innovación (Fase 2)
 
 ## QR + Trazabilidad
 
@@ -266,7 +266,7 @@ Cada semana se trabaja en paralelo:
 
 ---
 
-# 📊 Definición de MVP
+# Definición de MVP
 
 ## Incluye
 
@@ -282,13 +282,13 @@ Cada semana se trabaja en paralelo:
 
 ---
 
-# ⏱️ Estimación
+# Estimación
 
 **6–8 semanas → Beta funcional**
 
 ---
 
-# ✅ Conclusión
+# Conclusión
 
 El proyecto está bien encaminado técnicamente.
 
@@ -298,6 +298,6 @@ El éxito depende de:
 * Definición correcta de procesos
 * Foco en el core operativo
 
-👉 No es un problema técnico, es un problema de **alineación operativa**.
+No es un problema técnico, es un problema de **alineación operativa**.
 
 ---
