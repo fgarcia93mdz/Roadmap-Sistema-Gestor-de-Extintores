@@ -338,262 +338,228 @@
     <a href="roadmap.html">&#8592; Volver al Roadmap</a>
   </div>
   <script>
-    // --- Estructura dinámica ---
+    // --- Estructura dinámica homogénea ---
     const defaultSlides = [
       {
-        "title": "Resumen Ejecutivo",
-        "color": "#fff",
-        "fields": [
-          {
-            "label": "Objetivo",
-            "type": "text",
-            "value": "Sistema de gestión y control de extintores, diseñado de forma moderna y adaptado a la operación de Maxiseguridad, que permite optimizar los procesos y mejorar la calidad del trabajo en las áreas de logística y taller."
-          },
-          {
-            "label": "Enfoque de transformación digital",
-            "type": "text",
-            "value": "Optimizando los procesos operativos y elevando la calidad del trabajo en logística y taller mediante una solución moderna y adaptada a la operación."
-          },
-          {
-            "label": "Resultado",
-            "type": "text",
-            "value": "Nos va a permitir modernizar nuestros sistemas actuales y mejorar frente a nuestros clientes."
-          },
-          {
-            "label": "Nuestro dolor en el proceso",
-            "type": "textarea",
-            "value": "   - Falta de trazabilidad del estado real de un extintor.\n\n   - Desconexión entre taller y logística.\n\n   - Información dispersa o manual y no en tiempo real.\n\n   - Dificultad para auditar procesos.\n\n   - Errores en movimientos y estados\n\nEl sistema elimina esto centralizando todo en un flujo único digital."
-          }
-        ]
+        title: "Resumen Ejecutivo",
+        color: "#fff",
+        fields: [
+          { label: "Objetivo", type: "text", value: "Sistema de gestión y control de extintores, diseñado de forma moderna y adaptado a la operación de Maxiseguridad, que permite optimizar los procesos y mejorar la calidad del trabajo en las áreas de logística y taller." },
+          { label: "Enfoque de transformación digital", type: "text", value: "Optimizando los procesos operativos y elevando la calidad del trabajo en logística y taller mediante una solución moderna y adaptada a la operación." },
+          { label: "Resultado", type: "text", value: "Nos va a permitir modernizar nuestros sistemas actuales y mejorar frente a nuestros clientes." },
+          { label: "Nuestro dolor en el proceso", type: "textarea", value: "   - Falta de trazabilidad del estado real de un extintor.\n\n   - Desconexión entre taller y logística.\n\n   - Información dispersa o manual y no en tiempo real.\n\n   - Dificultad para auditar procesos.\n\n   - Errores en movimientos y estados\n\nEl sistema elimina esto centralizando todo en un flujo único digital." }
+        ],
+        content: null
       },
       {
-        "title": "Sistema",
-        "color": "#f8fafc",
-        "fields": [
-          {
-            "label": "Backend",
-            "type": "text",
-            "value": "Arquitectura organizada y escalable en NodeJS, Sequelize y Mysql."
-          },
-          {
-            "label": "Frontend",
-            "type": "text",
-            "value": "Dashboard inicial en Vite y React JS."
-          },
-          {
-            "label": "Negocio",
-            "type": "text",
-            "value": "Se inició el relevamiento funcional del sistema actual (SIGEX) y de la operatoria real del taller y su vinculo con los procesos de logistica,"
-          },
-          {
-            "label": "Análisis del sistema actual (SIGEX)",
-            "type": "textarea",
-            "value": "Se realizó un relevamiento inicial de los módulos existentes, entre ellos:\n\n•Gestión de clientes, proveedores y estructuras organizativas.\n\n•Gestión de equipos y planillas de trabajo.\n\n•Módulo de logística (recorridos, retiros, órdenes).\n\n•Facturación y cobranzas.\n\n•Reportes operativos y técnicos.\n\n•Controles periódicos e integración con otros sistemas.\n\nEste análisis permite identificar tanto las funcionalidades necesarias como las oportunidades de mejora en términos de usabilidad, integración y trazabilidad.\n"
-          }
-        ]
+        title: "Sistema",
+        color: "#f8fafc",
+        fields: [
+          { label: "Backend", type: "text", value: "Arquitectura organizada y escalable en NodeJS, Sequelize y Mysql." },
+          { label: "Frontend", type: "text", value: "Dashboard inicial en Vite y React JS." },
+          { label: "Negocio", type: "text", value: "Se inició el relevamiento funcional del sistema actual (SIGEX) y de la operatoria real del taller y su vinculo con los procesos de logistica," },
+          { label: "Análisis del sistema actual (SIGEX)", type: "textarea", value: "Se realizó un relevamiento inicial de los módulos existentes, entre ellos:\n\n•Gestión de clientes, proveedores y estructuras organizativas.\n\n•Gestión de equipos y planillas de trabajo.\n\n•Módulo de logística (recorridos, retiros, órdenes).\n\n•Facturación y cobranzas.\n\n•Reportes operativos y técnicos.\n\n•Controles periódicos e integración con otros sistemas.\n\nEste análisis permite identificar tanto las funcionalidades necesarias como las oportunidades de mejora en términos de usabilidad, integración y trazabilidad.\n" }
+        ],
+        content: null
       },
       {
-        "title": "Etapa Actual",
-        "color": "#fff",
-        "fields": [
-          {
-            "label": "Análisis y Relevamiento Funcional",
-            "type": "text",
-            "value": "Actualmente el foco está en comprender el circuito operativo real, principalmente en el área técnica (taller)."
-          },
-          {
-            "label": "Avances",
-            "type": "textarea",
-            "value": "•Inicio del análisis del ciclo de vida del extintor (desde ingreso al taller hasta egreso). \n\n•Identificación preliminar de etapas del proceso (recepción, inspección, reparación, carga, control, despacho)."
-          },
-          {
-            "label": "Pendientes clave",
-            "type": "textarea",
-            "value": "•Definición del flujo completo junto al responsable del área de taller.\n\n•Formalización del circuito operativo ideal para su posterior implementación.\n"
-          },
-          {
-            "label": "Próximas acciones inmediatas",
-            "type": "textarea",
-            "value": "•Relevamiento del circuito logístico.\n\n•Identificación de puntos de integración entre taller y logística.\n\n"
-          }
-        ]
+        title: "Etapa Actual",
+        color: "#fff",
+        fields: [
+          { label: "Análisis y Relevamiento Funcional", type: "text", value: "Actualmente el foco está en comprender el circuito operativo real, principalmente en el área técnica (taller)." },
+          { label: "Avances", type: "textarea", value: "•Inicio del análisis del ciclo de vida del extintor (desde ingreso al taller hasta egreso). \n\n•Identificación preliminar de etapas del proceso (recepción, inspección, reparación, carga, control, despacho)." },
+          { label: "Pendientes clave", type: "textarea", value: "•Definición del flujo completo junto al responsable del área de taller.\n\n•Formalización del circuito operativo ideal para su posterior implementación.\n" },
+          { label: "Próximas acciones inmediatas", type: "textarea", value: "•Relevamiento del circuito logístico.\n\n•Identificación de puntos de integración entre taller y logística.\n\n" }
+        ],
+        content: null
       },
       {
-        "title": "Roadmap de Avance por Etapas",
-        "color": "#fff",
-        "fields": [
-          {
-            "label": "Timeline",
-            "type": "timeline",
-            "value": [
-              {
-                "semana": "Etapa 1",
-                "titulo": "Definición del proceso operativo",
-                "detalle": "Formalización del flujo del taller, relevamiento del circuito logístico e identificación de puntos de integración entre áreas.",
-                "status": "done",
-                "progreso": 100
-              },
-              {
-                "semana": "Etapa 2",
-                "titulo": "Modelado del sistema",
-                "detalle": "Definición de estados del extintor, modelado de eventos y transiciones, y diseño de la estructura de datos y lógica backend.",
-                "status": "active",
-                "progreso": 60
-              },
-              {
-                "semana": "Etapa 3",
-                "titulo": "Desarrollo del módulo operativo",
-                "detalle": "Implementación del circuito operativo del extintor, registro de tareas técnicas, control de insumos e integración con logística (salidas y despachos).",
-                "status": "pending",
-                "progreso": 0
-              },
-              {
-                "semana": "Etapa 4",
-                "titulo": "Desarrollo de interfaces",
-                "detalle": "Interfaces optimizadas para operarios con foco en velocidad y simplicidad, dashboard de seguimiento operativo y mejora de experiencia de usuario.",
-                "status": "pending",
-                "progreso": 0
-              },
-              {
-                "semana": "Etapa 5",
-                "titulo": "Facturación y administración",
-                "detalle": "Generación de órdenes de facturación, vinculación con clientes y servicios, y desarrollo de reportes de gestión.",
-                "status": "pending",
-                "progreso": 0
-              },
-              {
-                "semana": "Etapa 6",
-                "titulo": "Testing y validación operativa",
-                "detalle": "Pruebas con datos reales, validación de roles y seguridad, y ajustes basados en el uso operativo.",
-                "status": "pending",
-                "progreso": 0
-              },
-              {
-                "semana": "Etapa 7",
-                "titulo": "Puesta en producción",
-                "detalle": "Implementación progresiva del sistema, acompañamiento a usuarios finales y ciclo de mejoras continuas en base a feedback operativo.",
-                "status": "pending",
-                "progreso": 0
-              }
-            ]
-          }
-        ]
+        title: "Roadmap de Avance por Etapas",
+        color: "#fff",
+        fields: [
+          { label: "Timeline", type: "timeline", value: [
+            { semana: "Etapa 1", titulo: "Definición del proceso operativo", detalle: "Formalización del flujo del taller, relevamiento del circuito logístico e identificación de puntos de integración entre áreas.", status: "done", progreso: 100 },
+            { semana: "Etapa 2", titulo: "Modelado del sistema", detalle: "Definición de estados del extintor, modelado de eventos y transiciones, y diseño de la estructura de datos y lógica backend.", status: "active", progreso: 60 },
+            { semana: "Etapa 3", titulo: "Desarrollo del módulo operativo", detalle: "Implementación del circuito operativo del extintor, registro de tareas técnicas, control de insumos e integración con logística (salidas y despachos).", status: "pending", progreso: 0 },
+            { semana: "Etapa 4", titulo: "Desarrollo de interfaces", detalle: "Interfaces optimizadas para operarios con foco en velocidad y simplicidad, dashboard de seguimiento operativo y mejora de experiencia de usuario.", status: "pending", progreso: 0 },
+            { semana: "Etapa 5", titulo: "Facturación y administración", detalle: "Generación de órdenes de facturación, vinculación con clientes y servicios, y desarrollo de reportes de gestión.", status: "pending", progreso: 0 },
+            { semana: "Etapa 6", titulo: "Testing y validación operativa", detalle: "Pruebas con datos reales, validación de roles y seguridad, y ajustes basados en el uso operativo.", status: "pending", progreso: 0 },
+            { semana: "Etapa 7", titulo: "Puesta en producción", detalle: "Implementación progresiva del sistema, acompañamiento a usuarios finales y ciclo de mejoras continuas en base a feedback operativo.", status: "pending", progreso: 0 }
+          ] }
+        ],
+        content: null
       },
       {
-        "title": "Línea de Mejora e Innovación (R&D)",
-        "color": "#fff",
-        "fields": [
-          {
-            "label": "Investigación QR y Trazabilidad",
-            "type": "timeline",
-            "value": [
-              {
-                "fase": "Concepto",
-                "titulo": "Trazabilidad en tiempo real con QR",
-                "detalle": "Evaluación de un sistema para digitalizar el seguimiento del extintor a través de códigos QR y eventos en tiempo real.",
-                "status": "active",
-                "progreso": 40
-              },
-              {
-                "fase": "Diseño funcional",
-                "titulo": "Modelo de eventos y escaneo",
-                "detalle": "Definición de cómo el escaneo de QR genera eventos, actualiza estados y registra movimientos automáticamente.",
-                "status": "active",
-                "progreso": 50
-              },
-              {
-                "fase": "Validación operativa",
-                "titulo": "Flujo en campo",
-                "detalle": "Análisis del impacto en taller y logística, validación de usabilidad en operación real.",
-                "status": "pending",
-                "progreso": 0
-              },
-              {
-                "fase": "Beneficios esperados",
-                "titulo": "Impacto operativo",
-                "detalle": "Reducción de carga manual, mejora de trazabilidad y visibilidad en tiempo real entre áreas.",
-                "status": "pending",
-                "progreso": 0
-              }
-            ]
-          }
-        ]
+        title: "Línea de Mejora e Innovación (R&D)",
+        color: "#fff",
+        fields: [
+          { label: "Investigación QR y Trazabilidad", type: "timeline", value: [
+            { fase: "Concepto", titulo: "Trazabilidad en tiempo real con QR", detalle: "Evaluación de un sistema para digitalizar el seguimiento del extintor a través de códigos QR y eventos en tiempo real.", status: "active", progreso: 40 },
+            { fase: "Diseño funcional", titulo: "Modelo de eventos y escaneo", detalle: "Definición de cómo el escaneo de QR genera eventos, actualiza estados y registra movimientos automáticamente.", status: "active", progreso: 50 },
+            { fase: "Validación operativa", titulo: "Flujo en campo", detalle: "Análisis del impacto en taller y logística, validación de usabilidad en operación real.", status: "pending", progreso: 0 },
+            { fase: "Beneficios esperados", titulo: "Impacto operativo", detalle: "Reducción de carga manual, mejora de trazabilidad y visibilidad en tiempo real entre áreas.", status: "pending", progreso: 0 }
+          ] }
+        ],
+        content: null
       },
       {
-        "title": "Roadmap de Producción",
-        "color": "#fff",
-        "fields": [
-          {
-            "label": "Plan de entrega",
-            "type": "timeline",
-            "value": [
-              {
-                "fase": "Fase 1",
-                "titulo": "Definición del proceso operativo",
-                "detalle": "Formalización del flujo del taller, circuito logístico e integración entre áreas.",
-                "status": "done",
-                "progreso": 100
-              },
-              {
-                "fase": "Fase 2",
-                "titulo": "Modelado del sistema",
-                "detalle": "Definición de estados del extintor, eventos y estructura backend.",
-                "status": "active",
-                "progreso": 60
-              },
-              {
-                "fase": "Fase 3",
-                "titulo": "Desarrollo del módulo operativo",
-                "detalle": "Circuito operativo del extintor, tareas técnicas e integración con logística.",
-                "status": "pending",
-                "progreso": 0
-              },
-              {
-                "fase": "Fase 4",
-                "titulo": "Interfaces operativas",
-                "detalle": "UI para operarios, dashboard y optimización de experiencia de uso.",
-                "status": "pending",
-                "progreso": 0
-              },
-              {
-                "fase": "Fase 5",
-                "titulo": "Testing y validación",
-                "detalle": "Pruebas con datos reales, validación de roles y ajustes operativos.",
-                "status": "pending",
-                "progreso": 0
-              },
-              {
-                "fase": "Fase 6",
-                "titulo": "Puesta en producción",
-                "detalle": "Deploy progresivo, acompañamiento a usuarios y mejoras continuas.",
-                "status": "pending",
-                "progreso": 0
-              }
-            ]
-          }
-        ]
+        title: "Roadmap de Producción",
+        color: "#fff",
+        fields: [
+          { label: "Plan de entrega", type: "timeline", value: [
+            { fase: "Fase 1", titulo: "Definición del proceso operativo", detalle: "Formalización del flujo del taller, circuito logístico e integración entre áreas.", status: "done", progreso: 100 },
+            { fase: "Fase 2", titulo: "Modelado del sistema", detalle: "Definición de estados del extintor, eventos y estructura backend.", status: "active", progreso: 60 },
+            { fase: "Fase 3", titulo: "Desarrollo del módulo operativo", detalle: "Circuito operativo del extintor, tareas técnicas e integración con logística.", status: "pending", progreso: 0 },
+            { fase: "Fase 4", titulo: "Interfaces operativas", detalle: "UI para operarios, dashboard y optimización de experiencia de uso.", status: "pending", progreso: 0 },
+            { fase: "Fase 5", titulo: "Testing y validación", detalle: "Pruebas con datos reales, validación de roles y ajustes operativos.", status: "pending", progreso: 0 },
+            { fase: "Fase 6", titulo: "Puesta en producción", detalle: "Deploy progresivo, acompañamiento a usuarios y mejoras continuas.", status: "pending", progreso: 0 }
+          ] }
+        ],
+        content: null
       },
-      {
-        "title": "Conclusión Ejecutiva",
-        "type": "summary",
-        "color": "#fff",
-        "content": {
-          "resumen_general": "El proyecto se encuentra en un estado técnico sólido, con una arquitectura escalable y un avance significativo en el desarrollo del sistema de gestión. Actualmente, el foco principal no está en la construcción tecnológica, sino en la alineación precisa del sistema con los procesos operativos reales del negocio.",
-          "estado_actual": "En etapa de definición funcional y validación operativa, con backend y frontend base ya implementados.",
-          "situacion_clave": "El principal factor crítico no es técnico, sino la correcta definición de los procesos entre taller, logística y operación.",
-          "condicion_exito": [
-            "Validación temprana con usuarios reales",
-            "Definición clara y estable de los flujos operativos",
-            "Reducción de cambios estructurales durante el desarrollo",
-            "Alineación constante entre negocio y sistema"
-          ],
-          "vision_final": "Construir una plataforma centralizada de control operativo para extintores, con trazabilidad completa, integración entre áreas y capacidad de escalado hacia automatización y control en tiempo real.",
-          "mensaje_cierre": "El sistema no representa únicamente una solución tecnológica, sino una herramienta de transformación operativa del negocio, donde la precisión del proceso define directamente el éxito del producto."
+        {
+          "title": "Resumen Ejecutivo",
+          "color": "#fff",
+          "fields": [
+            {
+              "label": "Objetivo",
+              "type": "text",
+              "value": "Sistema de gestión y control de extintores, diseñado de forma moderna y adaptado a la operación de Maxiseguridad, que permite optimizar los procesos y mejorar la calidad del trabajo en las áreas de logística y taller."
+            },
+            {
+              "label": "Enfoque de transformación digital",
+              "type": "text",
+              "value": "Optimizando los procesos operativos y elevando la calidad del trabajo en logística y taller mediante una solución moderna y adaptada a la operación."
+            },
+            {
+              "label": "Resultado",
+              "type": "text",
+              "value": "Nos va a permitir modernizar nuestros sistemas actuales y mejorar frente a nuestros clientes."
+            },
+            {
+              "label": "Nuestro dolor en el proceso",
+              "type": "textarea",
+              "value": "   - Falta de trazabilidad del estado real de un extintor.\n\n   - Desconexión entre taller y logística.\n\n   - Información dispersa o manual y no en tiempo real.\n\n   - Dificultad para auditar procesos.\n\n   - Errores en movimientos y estados\n\nEl sistema elimina esto centralizando todo en un flujo único digital."
+            }
+          ]
+        },
+        {
+          "title": "Sistema",
+          "color": "#f8fafc",
+          "fields": [
+            {
+              "label": "Backend",
+              "type": "text",
+              "value": "Arquitectura organizada y escalable en NodeJS, Sequelize y Mysql."
+            },
+            {
+              "label": "Frontend",
+              "type": "text",
+              "value": "Dashboard inicial en Vite y React JS."
+            },
+            {
+              "label": "Negocio",
+              "type": "text",
+              "value": "Se inició el relevamiento funcional del sistema actual (SIGEX) y de la operatoria real del taller y su vinculo con los procesos de logistica."
+            },
+            {
+              "label": "Análisis del sistema actual (SIGEX)",
+              "type": "textarea",
+              "value": "Se realizó un relevamiento inicial de los módulos existentes, entre ellos:\n\n• Gestión de clientes, proveedores y estructuras organizativas.\n• Gestión de equipos y planillas de trabajo.\n• Módulo de logística (recorridos, retiros, órdenes).\n• Facturación y cobranzas.\n• Reportes operativos y técnicos.\n• Controles periódicos e integración con otros sistemas.\n\nEste análisis permite identificar tanto las funcionalidades necesarias como las oportunidades de mejora en términos de usabilidad, integración y trazabilidad."
+            }
+          ]
+        },
+        {
+          "title": "Etapa Actual",
+          "color": "#fff",
+          "fields": [
+            {
+              "label": "Análisis y Relevamiento Funcional",
+              "type": "text",
+              "value": "Actualmente el foco está en comprender el circuito operativo real, principalmente en el área técnica (taller)."
+            },
+            {
+              "label": "Avances",
+              "type": "textarea",
+              "value": "• Inicio del análisis del ciclo de vida del extintor (desde ingreso al taller hasta egreso).\n• Identificación preliminar de etapas del proceso (recepción, inspección, reparación, carga, control, despacho)."
+            },
+            {
+              "label": "Pendientes clave",
+              "type": "textarea",
+              "value": "• Definición del flujo completo junto al responsable del área de taller.\n• Formalización del circuito operativo ideal para su posterior implementación."
+            },
+            {
+              "label": "Próximas acciones inmediatas",
+              "type": "textarea",
+              "value": "• Relevamiento del circuito logístico.\n• Identificación de puntos de integración entre taller y logística."
+            }
+          ]
+        },
+        {
+          "title": "Roadmap de Avance por Etapas",
+          "color": "#fff",
+          "fields": [
+            {
+              "label": "Timeline",
+              "type": "timeline",
+              "value": [
+                {
+                  "semana": "Etapa 1",
+                  "titulo": "Definición del proceso operativo",
+                  "detalle": "Formalización del flujo del taller y logística.",
+                  "status": "done",
+                  "progreso": 100
+                },
+                {
+                  "semana": "Etapa 2",
+                  "titulo": "Modelado del sistema",
+                  "detalle": "Estados del extintor y lógica backend.",
+                  "status": "active",
+                  "progreso": 60
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Conclusión Ejecutiva",
+          "color": "#fff",
+          "fields": [
+            {
+              "label": "resumen_general",
+              "type": "textarea",
+              "value": "El proyecto se encuentra en un estado técnico sólido, con una arquitectura escalable y un avance significativo en el desarrollo del sistema de gestión. Actualmente, el foco principal no está en la construcción tecnológica, sino en la alineación precisa del sistema con los procesos operativos reales del negocio."
+            },
+            {
+              "label": "estado_actual",
+              "type": "text",
+              "value": "En etapa de definición funcional y validación operativa, con backend y frontend base ya implementados."
+            },
+            {
+              "label": "situacion_clave",
+              "type": "text",
+              "value": "El principal factor crítico no es técnico, sino la correcta definición de los procesos entre taller, logística y operación."
+            },
+            {
+              "label": "condicion_exito",
+              "type": "textarea",
+              "value": "• Validación temprana con usuarios reales\n• Definición clara de flujos operativos\n• Reducción de cambios estructurales\n• Alineación constante entre negocio y sistema"
+            },
+            {
+              "label": "vision_final",
+              "type": "textarea",
+              "value": "Construir una plataforma centralizada de control operativo para extintores, con trazabilidad completa e integración entre áreas."
+            },
+            {
+              "label": "mensaje_cierre",
+              "type": "textarea",
+              "value": "El sistema no es solo tecnología, sino una transformación operativa del negocio."
+            }
+          ]
         }
-      }
     ];
 
-    let slides = JSON.parse(JSON.stringify(defaultSlides));
+    let slides;
 
     function renderSlides() {
       const root = document.getElementById('slidesRoot');
@@ -609,14 +575,14 @@
         titleInput.type = 'text';
         titleInput.value = slide.title || '';
         titleInput.placeholder = 'Título de la slide';
-        titleInput.oninput = e => { slide.title = e.target.value; renderPreview(); };
+        titleInput.oninput = e => { slide.title = e.target.value; update(); };
         header.appendChild(titleInput);
         // Color
         const colorInput = document.createElement('input');
         colorInput.type = 'color';
         colorInput.value = slide.color || '#fff';
         colorInput.title = 'Color de fondo';
-        colorInput.oninput = e => { slide.color = e.target.value; renderSlides(); renderPreview(); };
+        colorInput.oninput = e => { slide.color = e.target.value; update(); };
         header.appendChild(colorInput);
         // Acciones
         const actions = document.createElement('div');
@@ -625,27 +591,27 @@
           const delBtn = document.createElement('button');
           delBtn.innerText = '🗑';
           delBtn.title = 'Eliminar slide';
-          delBtn.onclick = () => { slides.splice(sidx,1); renderSlides(); renderPreview(); };
+          delBtn.onclick = () => { slides.splice(sidx,1); update(); };
           actions.appendChild(delBtn);
         }
         if (sidx > 0) {
           const upBtn = document.createElement('button');
           upBtn.innerText = '⬆️';
           upBtn.title = 'Subir';
-          upBtn.onclick = () => { [slides[sidx-1],slides[sidx]]=[slides[sidx],slides[sidx-1]]; renderSlides(); renderPreview(); };
+          upBtn.onclick = () => { [slides[sidx-1],slides[sidx]]=[slides[sidx],slides[sidx-1]]; update(); };
           actions.appendChild(upBtn);
         }
         if (sidx < slides.length-1) {
           const downBtn = document.createElement('button');
           downBtn.innerText = '⬇️';
           downBtn.title = 'Bajar';
-          downBtn.onclick = () => { [slides[sidx+1],slides[sidx]]=[slides[sidx],slides[sidx+1]]; renderSlides(); renderPreview(); };
+          downBtn.onclick = () => { [slides[sidx+1],slides[sidx]]=[slides[sidx],slides[sidx+1]]; update(); };
           actions.appendChild(downBtn);
         }
         header.appendChild(actions);
         slideDiv.appendChild(header);
         // Renderizar campos si existen
-        if (Array.isArray(slide.fields)) {
+        if (Array.isArray(slide.fields) && slide.fields.length > 0) {
           const fieldsDiv = document.createElement('div');
           fieldsDiv.className = 'fields-list';
           slide.fields.forEach((field, fidx) => {
@@ -656,7 +622,7 @@
             labelInput.type = 'text';
             labelInput.value = field.label || '';
             labelInput.placeholder = 'Nombre del campo';
-            labelInput.oninput = e => { field.label = e.target.value; renderPreview(); };
+            labelInput.oninput = e => { field.label = e.target.value; update(); };
             fieldDiv.appendChild(labelInput);
             // Tipo
             const typeSel = document.createElement('select');
@@ -667,7 +633,7 @@
               if (field.type===t) opt.selected = true;
               typeSel.appendChild(opt);
             });
-            typeSel.onchange = e => { field.type = e.target.value; if(field.type==='timeline')field.value=[]; renderSlides(); renderPreview(); };
+            typeSel.onchange = e => { field.type = e.target.value; if(field.type==='timeline')field.value=[]; update(); };
             fieldDiv.appendChild(typeSel);
             // Valor
             if (field.type==='text') {
@@ -675,32 +641,32 @@
               val.type = 'text';
               val.value = field.value||'';
               val.placeholder = 'Valor';
-              val.oninput = e => { field.value = e.target.value; renderPreview(); };
+              val.oninput = e => { field.value = e.target.value; update(); };
               fieldDiv.appendChild(val);
             } else if (field.type==='textarea') {
               const val = document.createElement('textarea');
               val.value = field.value||'';
               val.placeholder = 'Valor';
-              val.oninput = e => { field.value = e.target.value; renderPreview(); };
+              val.oninput = e => { field.value = e.target.value; update(); };
               fieldDiv.appendChild(val);
             } else if (field.type==='color') {
               const val = document.createElement('input');
               val.type = 'color';
               val.value = field.value||'#2563eb';
-              val.oninput = e => { field.value = e.target.value; renderPreview(); };
+              val.oninput = e => { field.value = e.target.value; update(); };
               fieldDiv.appendChild(val);
             } else if (field.type==='number') {
               const val = document.createElement('input');
               val.type = 'number';
               val.value = field.value||0;
-              val.oninput = e => { field.value = Number(e.target.value); renderPreview(); };
+              val.oninput = e => { field.value = Number(e.target.value); update(); };
               fieldDiv.appendChild(val);
             } else if (field.type==='image') {
               const val = document.createElement('input');
               val.type = 'text';
               val.value = field.value||'';
               val.placeholder = 'URL de imagen';
-              val.oninput = e => { field.value = e.target.value; renderPreview(); };
+              val.oninput = e => { field.value = e.target.value; update(); };
               fieldDiv.appendChild(val);
             } else if (field.type==='timeline') {
               const timelineDiv = document.createElement('div');
@@ -711,27 +677,26 @@
                 const row = document.createElement('div');
                 row.style.display = 'flex';
                 row.style.gap = '6px';
-                // Soporte flexible para keys
                 Object.keys(item).forEach(k => {
                   const inp = document.createElement('input');
                   inp.type = (k==='progreso'||k==='progress')?'number':'text';
                   inp.value = item[k]||'';
                   inp.placeholder = k.charAt(0).toUpperCase()+k.slice(1);
                   inp.style.width = k==='detalle'?'120px':'80px';
-                  inp.oninput = e => { item[k]=(k==='progreso'||k==='progress')?Number(e.target.value):e.target.value; renderPreview(); };
+                  inp.oninput = e => { item[k]=(k==='progreso'||k==='progress')?Number(e.target.value):e.target.value; update(); };
                   row.appendChild(inp);
                 });
                 const del = document.createElement('button');
                 del.innerText = '🗑';
                 del.title = 'Eliminar etapa';
-                del.onclick = ()=>{ field.value.splice(tidx,1); renderSlides(); renderPreview(); };
+                del.onclick = ()=>{ field.value.splice(tidx,1); update(); };
                 row.appendChild(del);
                 timelineDiv.appendChild(row);
               });
               const addT = document.createElement('button');
               addT.innerText = '+ Etapa';
               addT.className = 'add-btn';
-              addT.onclick = ()=>{ field.value.push({}); renderSlides(); renderPreview(); };
+              addT.onclick = ()=>{ field.value.push({}); update(); };
               timelineDiv.appendChild(addT);
               fieldDiv.appendChild(timelineDiv);
             }
@@ -741,20 +706,20 @@
             const delF = document.createElement('button');
             delF.innerText = '🗑';
             delF.title = 'Eliminar campo';
-            delF.onclick = ()=>{ slide.fields.splice(fidx,1); renderSlides(); renderPreview(); };
+            delF.onclick = ()=>{ slide.fields.splice(fidx,1); update(); };
             fActions.appendChild(delF);
             if (fidx > 0) {
               const upF = document.createElement('button');
               upF.innerText = '⬆️';
               upF.title = 'Subir campo';
-              upF.onclick = ()=>{ [slide.fields[fidx-1],slide.fields[fidx]]=[slide.fields[fidx],slide.fields[fidx-1]]; renderSlides(); renderPreview(); };
+              upF.onclick = ()=>{ [slide.fields[fidx-1],slide.fields[fidx]]=[slide.fields[fidx],slide.fields[fidx-1]]; update(); };
               fActions.appendChild(upF);
             }
             if (fidx < slide.fields.length-1) {
               const downF = document.createElement('button');
               downF.innerText = '⬇️';
               downF.title = 'Bajar campo';
-              downF.onclick = ()=>{ [slide.fields[fidx+1],slide.fields[fidx]]=[slide.fields[fidx],slide.fields[fidx+1]]; renderSlides(); renderPreview(); };
+              downF.onclick = ()=>{ [slide.fields[fidx+1],slide.fields[fidx]]=[slide.fields[fidx],slide.fields[fidx+1]]; update(); };
               fActions.appendChild(downF);
             }
             fieldDiv.appendChild(fActions);
@@ -766,8 +731,7 @@
           addField.innerText = '+ Agregar campo';
           addField.onclick = ()=>{
             slide.fields.push({label:'Nuevo campo',type:'text',value:''});
-            renderSlides();
-            renderPreview();
+            update();
           };
           fieldsDiv.appendChild(addField);
           slideDiv.appendChild(fieldsDiv);
@@ -786,15 +750,18 @@
       });
     }
     function addSlide() {
-      slides.push({title:'Nueva Slide',color:'#fff',fields:[]});
-      renderSlides();
-      renderPreview();
+      slides.push({title:'Nueva Slide',color:'#fff',fields:[],content:null});
+      update();
     }
     function renderPreview() {
-      document.getElementById('jsonPreview').innerText = JSON.stringify(slides,null,2);
+      const preview = document.getElementById('jsonPreview');
+      preview.textContent = JSON.stringify(slides, null, 2);
+    }
+    function saveToStorage() {
+      localStorage.setItem('roadmap_slides', JSON.stringify(slides));
     }
     function saveAll() {
-      localStorage.setItem('roadmap_slides', JSON.stringify(slides));
+      saveToStorage();
       showMessage('¡Datos guardados!');
     }
     function exportJSON() {
@@ -820,9 +787,13 @@
         try {
           const data = JSON.parse(evt.target.result);
           if (Array.isArray(data)) {
-            slides = data;
-            renderSlides();
-            renderPreview();
+            slides = data.map(s => ({
+              title: s.title || '',
+              color: s.color || '#fff',
+              fields: Array.isArray(s.fields) ? s.fields : [],
+              content: s.content || null
+            }));
+            update();
             showMessage('JSON importado. ¡No olvides guardar!','#2563eb');
           } else {
             showMessage('El archivo no tiene la estructura esperada.','#d32f2f');
@@ -860,18 +831,63 @@
     function restoreDefaults() {
       if (confirm('¿Seguro que quieres restaurar los valores por defecto? Se perderán los cambios no guardados.')) {
         localStorage.removeItem('roadmap_slides');
-        slides = JSON.parse(JSON.stringify(defaultSlides));
-        renderSlides();
-        renderPreview();
+        slides = defaultSlides.map(s => ({
+          title: s.title || '',
+          color: s.color || '#fff',
+          fields: Array.isArray(s.fields) ? s.fields : [],
+          content: s.content || null
+        }));
+        update();
         showMessage('¡Valores restaurados por defecto!','var(--success)');
       }
     }
-    // Init
-    if (localStorage.getItem('roadmap_slides')) {
-      try { slides = JSON.parse(localStorage.getItem('roadmap_slides')); } catch {}
+    // Init robusto: solo usa localStorage si es válido y no vacío
+    (function init() {
+      const saved = localStorage.getItem('roadmap_slides');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            slides = parsed.map(s => ({
+              title: s.title || '',
+              color: s.color || '#fff',
+              fields: Array.isArray(s.fields) ? s.fields : [],
+              content: s.content || null
+            }));
+          } else {
+            slides = defaultSlides.map(s => ({
+              title: s.title || '',
+              color: s.color || '#fff',
+              fields: Array.isArray(s.fields) ? s.fields : [],
+              content: s.content || null
+            }));
+          }
+        } catch {
+          slides = defaultSlides.map(s => ({
+            title: s.title || '',
+            color: s.color || '#fff',
+            fields: Array.isArray(s.fields) ? s.fields : [],
+            content: s.content || null
+          }));
+        }
+      } else {
+        slides = defaultSlides.map(s => ({
+          title: s.title || '',
+          color: s.color || '#fff',
+          fields: Array.isArray(s.fields) ? s.fields : [],
+          content: s.content || null
+        }));
+      }
+      renderSlides();
+      renderPreview();
+    })();
+
+    // Central update cycle
+    function update() {
+      renderSlides();
+      renderPreview();
+      saveToStorage();
     }
-    renderSlides();
-    renderPreview();
   </script>
 </body>
 </html>
