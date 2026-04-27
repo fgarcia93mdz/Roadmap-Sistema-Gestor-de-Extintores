@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roadmap Maxiseguridad</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <div class="sidebar" id="sidebar"></div>
   <div class="main">
@@ -15,8 +17,10 @@
       <a href="editor.html" style="margin-left:auto;">
         <button class="btn btn-primary" style="display: none">Editar datos</button>
       </a>
-      <button id="fullscreenBtn" title="Pantalla completa" class="btn btn-primary" style="margin-left:18px;">Pantalla completa</button>
-      <button id="restoreBtn" title="Restaurar valores por defecto" class="btn btn-danger" style="margin-left:18px;background:#dc2626;color:#fff;">Restaurar</button>
+      <button id="fullscreenBtn" title="Pantalla completa" class="btn btn-primary" style="margin-left:18px;">Pantalla
+        completa</button>
+      <button id="restoreBtn" title="Restaurar valores por defecto" class="btn btn-danger"
+        style="margin-left:18px;background:#dc2626;color:#fff;">Restaurar</button>
       <div id="toast" class="toast" style="display:none;"></div>
     </div>
     <div class="page-content" id="pageContent"></div>
@@ -25,12 +29,12 @@
     // --- Cargar slides desde localStorage (ambos formatos) ---
     let slides = [];
     if (localStorage.getItem('roadmap_slides')) {
-      try { slides = JSON.parse(localStorage.getItem('roadmap_slides')); } catch {}
+      try { slides = JSON.parse(localStorage.getItem('roadmap_slides')); } catch { }
     } else if (localStorage.getItem('roadmap')) {
-      try { slides = JSON.parse(localStorage.getItem('roadmap')); } catch {}
+      try { slides = JSON.parse(localStorage.getItem('roadmap')); } catch { }
     }
     if (!Array.isArray(slides) || !slides.length) {
-      slides = [
+      [
         {
           "title": "Resumen Ejecutivo",
           "color": "#fff",
@@ -74,12 +78,12 @@
             {
               "label": "Negocio",
               "type": "text",
-              "value": "Se inició el relevamiento funcional del sistema actual (SIGEX) y de la operatoria real del taller y su vinculo con los procesos de logistica,"
+              "value": "Se inició el relevamiento funcional del sistema actual (SIGEX) y de la operatoria real del taller y su vínculo con los procesos de logística."
             },
             {
               "label": "Análisis del sistema actual (SIGEX)",
               "type": "textarea",
-              "value": "Se realizó un relevamiento inicial de los módulos existentes, entre ellos:\n\n•Gestión de clientes, proveedores y estructuras organizativas.\n\n•Gestión de equipos y planillas de trabajo.\n\n•Módulo de logística (recorridos, retiros, órdenes).\n\n•Facturación y cobranzas.\n\n•Reportes operativos y técnicos.\n\n•Controles periódicos e integración con otros sistemas.\n\nEste análisis permite identificar tanto las funcionalidades necesarias como las oportunidades de mejora en términos de usabilidad, integración y trazabilidad.\n"
+              "value": "Se realizó un relevamiento inicial de los módulos existentes:\n\n• Gestión de clientes, proveedores y estructuras organizativas.\n• Gestión de equipos y planillas de trabajo.\n• Módulo de logística (recorridos, retiros, órdenes).\n• Facturación y cobranzas.\n• Reportes operativos y técnicos.\n• Controles periódicos e integración con otros sistemas.\n\nEste análisis permite identificar funcionalidades y oportunidades de mejora en usabilidad, integración y trazabilidad."
             }
           ]
         },
@@ -95,22 +99,22 @@
             {
               "label": "Avances",
               "type": "textarea",
-              "value": "•Inicio del análisis del ciclo de vida del extintor (desde ingreso al taller hasta egreso). \n\n•Identificación preliminar de etapas del proceso (recepción, inspección, reparación, carga, control, despacho)."
+              "value": "• Inicio del análisis del ciclo de vida del extintor.\n• Identificación de etapas: recepción, inspección, reparación, carga, control y despacho."
             },
             {
               "label": "Pendientes clave",
               "type": "textarea",
-              "value": "•Definición del flujo completo junto al responsable del área de taller.\n\n•Formalización del circuito operativo ideal para su posterior implementación.\n"
+              "value": "• Definición del flujo completo con el área de taller.\n• Formalización del circuito operativo ideal."
             },
             {
               "label": "Próximas acciones inmediatas",
               "type": "textarea",
-              "value": "•Relevamiento del circuito logístico.\n\n•Identificación de puntos de integración entre taller y logística.\n\n"
+              "value": "• Relevamiento del circuito logístico.\n• Integración entre taller y logística."
             }
           ]
         },
         {
-          "title": "Linea de tiempo 2",
+          "title": "Roadmap de Avance por Etapas",
           "color": "#fff",
           "fields": [
             {
@@ -118,31 +122,154 @@
               "type": "timeline",
               "value": [
                 {
-                  "semana": "Semana 1–2",
-                  "titulo": "Definición de procesos",
-                  "detalle": "Relevamiento completo + validación con operación",
+                  "semana": "Etapa 1",
+                  "titulo": "Definición del proceso operativo",
+                  "detalle": "Formalización del flujo del taller y logística.",
                   "status": "done",
                   "progreso": 100
                 },
                 {
-                  "semana": "Semana 2–3",
-                  "titulo": "Modelado",
-                  "detalle": "Estados, eventos y estructura backend",
+                  "semana": "Etapa 2",
+                  "titulo": "Modelado del sistema",
+                  "detalle": "Estados del extintor y lógica backend.",
                   "status": "active",
                   "progreso": 60
                 },
                 {
-                  "semana": "Semana 3–4",
-                  "titulo": "Core operativo",
-                  "detalle": "Flujo completo del extintor",
+                  "semana": "Etapa 3",
+                  "titulo": "Desarrollo del módulo operativo",
+                  "detalle": "Circuito operativo del extintor e integración con logística.",
+                  "status": "pending",
+                  "progreso": 0
+                },
+                {
+                  "semana": "Etapa 4",
+                  "titulo": "Interfaces operativas",
+                  "detalle": "UI para operarios y dashboard operativo.",
+                  "status": "pending",
+                  "progreso": 0
+                },
+                {
+                  "semana": "Etapa 5",
+                  "titulo": "Testing y validación",
+                  "detalle": "Pruebas con datos reales y ajustes.",
+                  "status": "pending",
+                  "progreso": 0
+                },
+                {
+                  "semana": "Etapa 6",
+                  "titulo": "Puesta en producción",
+                  "detalle": "Deploy progresivo y mejoras continuas.",
                   "status": "pending",
                   "progreso": 0
                 }
               ]
             }
           ]
+        },
+        {
+          "title": "Línea de Mejora e Innovación (R&D)",
+          "color": "#fff",
+          "fields": [
+            {
+              "label": "Investigación QR y Trazabilidad",
+              "type": "timeline",
+              "value": [
+                {
+                  "fase": "Concepto",
+                  "titulo": "Trazabilidad con QR",
+                  "detalle": "Seguimiento de extintores mediante códigos QR.",
+                  "status": "active",
+                  "progreso": 40
+                },
+                {
+                  "fase": "Diseño funcional",
+                  "titulo": "Modelo de eventos",
+                  "detalle": "Eventos automáticos por escaneo de QR.",
+                  "status": "active",
+                  "progreso": 50
+                },
+                {
+                  "fase": "Validación operativa",
+                  "titulo": "Flujo en campo",
+                  "detalle": "Prueba en operación real.",
+                  "status": "pending",
+                  "progreso": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Roadmap de Producción",
+          "color": "#fff",
+          "fields": [
+            {
+              "label": "Plan de entrega",
+              "type": "timeline",
+              "value": [
+                {
+                  "fase": "Fase 1",
+                  "titulo": "Definición del proceso",
+                  "detalle": "Flujo operativo base.",
+                  "status": "done",
+                  "progreso": 100
+                },
+                {
+                  "fase": "Fase 2",
+                  "titulo": "Modelado del sistema",
+                  "detalle": "Backend y estados.",
+                  "status": "active",
+                  "progreso": 60
+                },
+                {
+                  "fase": "Fase 3",
+                  "titulo": "Desarrollo",
+                  "detalle": "Implementación del sistema.",
+                  "status": "pending",
+                  "progreso": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Conclusión Ejecutiva",
+          "color": "#fff",
+          "fields": [
+            {
+              "label": "Resumen general",
+              "type": "textarea",
+              "value": "El proyecto se encuentra en un estado técnico sólido con arquitectura escalable y avance significativo. El foco actual es la alineación con los procesos reales del negocio."
+            },
+            {
+              "label": "Estado actual",
+              "type": "text",
+              "value": "Definición funcional y validación operativa en curso."
+            },
+            {
+              "label": "Situación clave",
+              "type": "text",
+              "value": "El factor crítico es la correcta definición de procesos entre áreas."
+            },
+            {
+              "label": "Condición de éxito",
+              "type": "textarea",
+              "value": "• Validación con usuarios reales\n• Flujos operativos claros\n• Menos cambios estructurales\n• Alineación negocio-sistema"
+            },
+            {
+              "label": "Visión final",
+              "type": "textarea",
+              "value": "Plataforma centralizada de control operativo con trazabilidad completa."
+            },
+            {
+              "label": "Mensaje de cierre",
+              "type": "textarea",
+              "value": "El sistema es una transformación operativa, no solo tecnológica."
+            }
+          ]
         }
-      ];
+      ]
     }
     // --- Render Sidebar ---
     function renderSidebar() {
@@ -151,7 +278,7 @@
       slides.forEach((slide, idx) => {
         const item = document.createElement('div');
         item.className = 'menu-item' + (idx === 0 ? ' active' : '');
-        item.innerText = slide.title || `Slide ${idx+1}`;
+        item.innerText = slide.title || `Slide ${idx + 1}`;
         item.onclick = () => showSlide(idx);
         sb.appendChild(item);
       });
@@ -179,7 +306,7 @@
         slideDiv.style.background = slide.color || '#fff';
         // Título
         const title = document.createElement('h1');
-        title.innerText = slide.title || `Slide ${idx+1}`;
+        title.innerText = slide.title || `Slide ${idx + 1}`;
         if (slide.titleColor) title.style.color = getColor(slide.titleColor);
         slideDiv.appendChild(title);
         // Campos
@@ -255,23 +382,23 @@
               let total = 0, sum = 0;
               if (Array.isArray(field.value)) {
                 total = field.value.length;
-                sum = field.value.reduce((acc, s) => acc + (s.progreso||0), 0);
+                sum = field.value.reduce((acc, s) => acc + (s.progreso || 0), 0);
               }
               const global = document.createElement('div');
               global.style.marginBottom = '20px';
-              global.innerHTML = 'Progreso total: <b>' + (total ? Math.round(sum/total) : 0) + '%</b>';
+              global.innerHTML = 'Progreso total: <b>' + (total ? Math.round(sum / total) : 0) + '%</b>';
               block.appendChild(global);
               // Timeline
               if (Array.isArray(field.value)) {
                 field.value.forEach((step, i) => {
                   const div = document.createElement('div');
-                  div.className = 'timeline-item ' + (step.status||'');
+                  div.className = 'timeline-item ' + (step.status || '');
                   div.innerHTML = `
                     <div class="timeline-card">
-                      <h3${step.titleColor ? ` style=\"color:${getColor(step.titleColor)}\"` : ''}>${step.semana||''}</h3>
-                      <p><b>${step.titulo||''}</b></p>
-                      <p>${step.detalle||''}</p>
-                      <div class="progress-bar"><div style="width:${step.progreso||0}%"></div></div>
+                      <h3${step.titleColor ? ` style=\"color:${getColor(step.titleColor)}\"` : ''}>${step.semana || ''}</h3>
+                      <p><b>${step.titulo || ''}</b></p>
+                      <p>${step.detalle || ''}</p>
+                      <div class="progress-bar"><div style="width:${step.progreso || 0}%"></div></div>
                     </div>
                     <div class="dot"></div>
                   `;
@@ -291,7 +418,7 @@
       document.querySelectorAll('.menu-item').forEach((m, i) => m.classList.toggle('active', i === idx));
     }
     // --- Pantalla completa ---
-    document.getElementById('fullscreenBtn').onclick = function() {
+    document.getElementById('fullscreenBtn').onclick = function () {
       const docElm = document.documentElement;
       if (!document.fullscreenElement) {
         if (docElm.requestFullscreen) docElm.requestFullscreen();
@@ -329,7 +456,7 @@
     }
 
     // --- Restaurar valores por defecto ---
-    document.getElementById('restoreBtn').onclick = function() {
+    document.getElementById('restoreBtn').onclick = function () {
       if (confirm('¿Seguro que quieres restaurar los valores por defecto? Se perderán los cambios no guardados.')) {
         localStorage.removeItem('roadmap_slides');
         localStorage.removeItem('roadmap');
@@ -572,7 +699,7 @@
         ];
         renderSidebar();
         renderSlides();
-        showMessage('¡Valores restaurados por defecto!','var(--success)');
+        showMessage('¡Valores restaurados por defecto!', 'var(--success)');
       }
     };
 
@@ -581,4 +708,5 @@
     renderSlides();
   </script>
 </body>
+
 </html>
